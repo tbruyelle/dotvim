@@ -5,6 +5,7 @@ set runtimepath+=$GOROOT/misc/vim
 autocmd BufWritePost *.go :silent Fmt
 filetype plugin indent on
 syntax on
+:set mouse=a
 "au VimEnter * NERDTreeToggle
 "au BufWritePost *.go silent! !ctags -R &
 
