@@ -10,3 +10,6 @@
 [submodule "bundle/vim-godef"]
 	path = bundle/vim-godef
 	url = https://github.com/dgryski/vim-godef
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = https://github.com/ervandew/supertab.git

@@ -14,6 +14,12 @@ let g:godef_same_file_in_same_window=1
 nmap <F3> :NERDTreeToggle<CR>
 "nmap <F4> :TagbarToggle<CR>
 
+" supertab use gocode
+let g:SuperTabDefaultCompletionType = "context"
+
+" enable mouse
+set mouse=a
+
 "Gotags config
 "let g:tagbar_type_go = {
 "    \ 'ctagstype' : 'go',
