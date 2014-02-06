@@ -20,6 +20,11 @@ let g:SuperTabDefaultCompletionType = "context"
 " enable mouse
 set mouse=a
 
+" 7 characters limit when j/k
+set so=7
+
+set relativenumber
+
 "Gotags config
 "let g:tagbar_type_go = {
 "    \ 'ctagstype' : 'go',
