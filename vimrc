@@ -5,7 +5,6 @@ set runtimepath+=$GOROOT/misc/vim
 autocmd BufWritePost *.go :silent Fmt
 filetype plugin indent on
 syntax on
-:set mouse=a
 "au VimEnter * NERDTreeToggle
 "au BufWritePost *.go silent! !ctags -R &
 
@@ -24,7 +23,26 @@ set mouse=a
 set so=7
 
 set relativenumber
+set number
 
+" Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
+nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+" nnoremap <silent><C-j> m
+" nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>`
+" nnoremap <silent><A-j> :set paste<CR>m`o<Esc>`
+" nnoremap <silent><A-k> :set paste<CR>m`O<Esc>`
+"
+" `
+" nnoremap <silent><C-j> m
+" nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>`
+" nnoremap <silent><A-j> :set paste<CR>m`o<Esc>`
+" nnoremap <silent><A-k> :set paste<CR>m`O<Esc>`
+"
+" `
 "Gotags config
 "let g:tagbar_type_go = {
 "    \ 'ctagstype' : 'go',
