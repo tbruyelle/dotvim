@@ -8,6 +8,24 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+"always show statusline
+set laststatus=2
+" Format the status line
+set stl=[%n]\ %t%m%r%h\ %w%y%<\ \ Cwd:%r%{getcwd()}%h\ \ %=\ Enc:%{strlen(&fenc)?&fenc:'none'},%{&ff}\ \ Line:%l\,%c\/%L\ \[%P\]
+
+"vim-go mappings
+"show go-info under cursor0
+let g:go_auto_type_info = 1
+"Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap gd <Plug>(go-def-split)
+"go commands
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+
+
 "au VimEnter * NERDTreeToggle
 "au BufWritePost *.go silent! !ctags -R &
 
