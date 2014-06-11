@@ -1,10 +1,13 @@
 execute pathogen#infect()
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-autocmd BufWritePost *.go :silent Fmt
-filetype plugin indent on
+
+"filetype off
+"filetype plugin indent off
+"set runtimepath+=$GOROOT/misc/vim
+"autocmd BufWritePost *.go :silent Fmt
+
 syntax on
+filetype plugin indent on
+
 "au VimEnter * NERDTreeToggle
 "au BufWritePost *.go silent! !ctags -R &
 
