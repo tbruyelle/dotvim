@@ -12,10 +12,18 @@ filetype plugin indent on
 set laststatus=2
 " Format the status line
 set stl=[%n]\ %t%m%r%h\ %w%y%<\ \ Cwd:%r%{getcwd()}%h\ \ %=\ Enc:%{strlen(&fenc)?&fenc:'none'},%{&ff}\ \ Line:%l\,%c\/%L\ \[%P\]
+" Bubble single lines
+nmap <C-K> ddkP
+nmap <C-J> ddp
+" Smart way to move between windows
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
 
 "vim-go mappings
 "show go-info under cursor0
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
@@ -47,10 +55,10 @@ set relativenumber
 set number
 
 " Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
-nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
-nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
-nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
-nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+"nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
+"nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+"nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+"nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
 " nnoremap <silent><C-j> m
 " nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>`
