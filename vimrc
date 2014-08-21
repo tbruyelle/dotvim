@@ -8,6 +8,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+set backspace=2
 "always show statusline
 set laststatus=2
 " Format the status line
