@@ -8,6 +8,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+set noswapfile
 set backspace=2
 "always show statusline
 set laststatus=2
@@ -25,6 +26,8 @@ nmap <C-l> <C-W>l
 "vim-go mappings
 "show go-info under cursor0
 let g:go_auto_type_info = 0
+"let g:go_fmt_command = "goimports"
+
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
