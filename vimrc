@@ -4,6 +4,10 @@ execute pathogen#infect()
 "filetype plugin indent off
 "set runtimepath+=$GOROOT/misc/vim
 "autocmd BufWritePost *.go :silent Fmt
+"
+
+set expandtab
+set tabstop=4
 
 syntax on
 filetype plugin indent on
