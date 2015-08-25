@@ -4,7 +4,6 @@ execute pathogen#infect()
 "filetype plugin indent off
 "set runtimepath+=$GOROOT/misc/vim
 "autocmd BufWritePost *.go :silent Fmt
-"
 
 set expandtab
 set tabstop=4
@@ -41,12 +40,13 @@ au FileType go nmap gd <Plug>(go-def-split)
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>I <Plug>(go-install)
 
 
 "au VimEnter * NERDTreeToggle
 "au BufWritePost *.go silent! !ctags -R &
 
-let g:godef_same_file_in_same_window=1
+let g:godef_same_file_in_same_window=0
 
 nmap <F3> :NERDTreeToggle<CR>
 "nmap <F4> :TagbarToggle<CR>

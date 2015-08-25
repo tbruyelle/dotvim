@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/tbruyelle/projects/gesica_mobile_gradle/build'
 let g:netrw_dirhist_2='/usr/local/go/misc/vim/ftplugin/go'
 let g:netrw_dirhist_3='/Users/tbruyelle/projects/go/src/github.com/Nvveen/Goliath'
+let g:netrw_dirhist_4='/home/tbruyelle/.vim/colors'
+let g:netrw_dirhist_5='/home/tbruyelle/.vim'
+let g:netrw_dirhist_6='/home/tbruyelle'
+let g:netrw_dirhist_7='/home/tbruyelle/.vim'
