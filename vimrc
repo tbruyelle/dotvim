@@ -30,6 +30,7 @@ nmap <C-l> <C-W>l
 "show go-info under cursor0
 let g:go_auto_type_info = 1
 "let g:go_fmt_command = "goimports"
+let g:go_fmt_options = "-s"
 
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
 au FileType go nmap <Leader>gd <Plug>(go-doc)
@@ -41,8 +42,6 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>I <Plug>(go-install)
-let g:go_fmt_command = "gofmt -s"
-
 
 "au VimEnter * NERDTreeToggle
 "au BufWritePost *.go silent! !ctags -R &
