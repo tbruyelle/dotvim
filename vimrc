@@ -1,5 +1,10 @@
 execute pathogen#infect()
 
+colorscheme molokai
+set gfn="Monospace 11"
+set guioptions-=m
+set guioptions-=T
+
 "filetype off
 "filetype plugin indent off
 "set runtimepath+=$GOROOT/misc/vim
@@ -31,8 +36,8 @@ nmap <C-l> <C-W>l
 "vim-go mappings
 "show go-info under cursor0
 let g:go_auto_type_info = 0
-"let g:go_fmt_command = "goimports"
-let g:go_fmt_options = "-s"
+let g:go_fmt_command = "goimports"
+"let g:go_fmt_options = "-s"
 
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
 au FileType go nmap <Leader>gd <Plug>(go-doc)
