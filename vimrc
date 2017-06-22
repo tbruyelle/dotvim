@@ -1,9 +1,19 @@
 execute pathogen#infect()
 
 colorscheme molokai
+"gvim setup
 set gfn="Monospace 11"
 set guioptions-=m
 set guioptions-=T
+
+"ack setup, replace with ag
+let g:ackprg = 'ag --vimgrep'
+
+"cnext/cprevious mapping
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+"close quickfix mapping
+nnoremap <leader>a :cclose<CR>
 
 "filetype off
 "filetype plugin indent off
