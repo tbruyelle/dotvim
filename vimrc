@@ -9,7 +9,12 @@ set guioptions-=T
 "ack setup, replace with ag
 let g:ackprg = 'ag --vimgrep'
 
-"cnext/cprevious mapping
+"cnext/cprevious mapping on location
+map <C-Down> :lnext<CR>
+map <C-Up> :lprevious<CR>
+"close location mapping
+nnoremap <leader>q :lclose<CR>
+"cnext/cprevious mapping on quickfix
 map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 "close quickfix mapping
