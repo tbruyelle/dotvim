@@ -10,6 +10,9 @@ set guioptions-=T
 let g:ackprg = 'ag --vimgrep'
 
 "cnext/cprevious mapping on location
+map <C-Left> :bp<CR>
+map <C-Right> :bn<CR>
+"cnext/cprevious mapping on location
 map <C-Down> :lnext<CR>
 map <C-Up> :lprevious<CR>
 "close location mapping
@@ -19,6 +22,8 @@ map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 "close quickfix mapping
 nnoremap <leader>a :cclose<CR>
+" show filepath 
+nnoremap <leader>f :echo @%<CR>
 
 "filetype off
 "filetype plugin indent off
@@ -50,7 +55,7 @@ nmap <C-l> <C-W>l
 
 "vim-go mappings
 "show go-info under cursor0
-let g:go_auto_type_info = 0
+"let g:go_auto_type_info = 0
 let g:go_fmt_command = "goimports"
 "let g:go_fmt_options = "-s"
 
@@ -64,6 +69,18 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>I <Plug>(go-install)
+au FileType go nmap <leader>c <Plug>(go-callers)
+au FileType go nmap <leader>r <Plug>(go-referrers)
+" go huiglights
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_auto_sameids = 0
 
 "au VimEnter * NERDTreeToggle
 "au BufWritePost *.go silent! !ctags -R &
