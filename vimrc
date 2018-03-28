@@ -1,4 +1,9 @@
-execute pathogen#infect()
+call plug#begin()
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'ervandew/supertab'
+Plug 'Townk/vim-autoclose'
+Plug 'mileszs/ack.vim'
+call plug#end()
 
 colorscheme molokai
 "gvim setup
