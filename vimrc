@@ -3,6 +3,7 @@ Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
 Plug 'ervandew/supertab'
 Plug 'Townk/vim-autoclose'
 Plug 'mileszs/ack.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 colorscheme molokai
@@ -76,6 +77,7 @@ au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>I <Plug>(go-install)
 au FileType go nmap <leader>c <Plug>(go-callers)
 au FileType go nmap <leader>r <Plug>(go-referrers)
+au FileType go nmap <leader>d <Plug>(go-decls)
 " go huiglights
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1
