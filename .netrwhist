@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/tbruyelle/projects/nirvana/src/github.com/tbruyelle/nirvana'
-let g:netrw_dirhist_2='/home/tbruyelle/projects/nirvana/static/components/bootstrap'
-let g:netrw_dirhist_3='/home/tbruyelle/projects/cinok/src/github.com/C5A/gesica_cinok/cmd/cinokd/testdata'
-let g:netrw_dirhist_4='/home/tbruyelle/.vim/bundle/vim-go'
-let g:netrw_dirhist_5='/home/tbruyelle/projects/gesica_mobile/app/build'
-let g:netrw_dirhist_6='/home/tbruyelle/projects/pikpik/app/build'
-let g:netrw_dirhist_7='/home/tbruyelle/projects/nirvana/templates/partials/orders'
-let g:netrw_dirhist_8='/home/tbruyelle/.java'
-let g:netrw_dirhist_9='/home/tbruyelle/projects/nirvana/templates/funerals/billings'
+let g:netrw_dirhist_cnt =0
