@@ -2,6 +2,15 @@
 
 priority -9
 
+# RPC method
+snippet rpc "RPC method" b
+type $2Args struct{}
+type $2Reply struct{}
+func ($1) $2(r *http.Request, args *$2Args, reply *$2Reply) error {
+	$3
+}
+endsnippet 
+
 # assert new
 snippet assn "assert := assert.New(t)" b
 assert := assert.New(t)
@@ -20,6 +29,11 @@ endsnippet
 # require no error
 snippet reqe "require.NoError(err)" b
 require.NoError(err)
+endsnippet 
+
+# assert no error
+snippet asse "assert.NoError(err)" 
+assert.NoError(err)
 endsnippet 
 
 # shorthand variable declaration
@@ -174,6 +188,13 @@ endsnippet
 snippet errn "Error return " !b
 if err != nil {
 	return err
+}
+${0}
+endsnippet
+
+snippet errw "Error return WithStack " !b
+if err != nil {
+	return errors.WithStack(err)
 }
 ${0}
 endsnippet

@@ -1,5 +1,5 @@
 call plug#begin()
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'ervandew/supertab'
 "Plug 'Townk/vim-autoclose'
 Plug 'mileszs/ack.vim'
