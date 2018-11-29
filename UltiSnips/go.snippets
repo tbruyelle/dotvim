@@ -200,6 +200,13 @@ ${0}
 endsnippet
 
 # error log snippet
+snippet errf "Error with log.Fatalf(%+v, err)" !b
+if err != nil {
+	log.Fatalf("%+v", err)
+}
+${0}
+endsnippet
+
 snippet errl "Error with log.Fatal(err)" !b
 if err != nil {
 	log.Fatal(err)
@@ -208,7 +215,7 @@ ${0}
 endsnippet
 
 # error multiple return
-snippet errn, "Error return with two return values" !b
+snippet err2, "Error return with two return values" !b
 if err != nil {
 	return ${1:nil}, err
 }
@@ -218,7 +225,7 @@ endsnippet
 # error panic
 snippet errp "Error panic" !b
 if err != nil {
-	panic(${1})
+	panic(err)
 }
 ${0}
 endsnippet

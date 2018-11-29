@@ -56,7 +56,6 @@ nnoremap <leader>a :cclose<CR>
 nnoremap <leader>f :echo @%<CR>
 
 "filetype off
-"filetype plugin indent off
 "set runtimepath+=$GOROOT/misc/vim
 "autocmd BufWritePost *.go :silent Fmt
 
@@ -66,6 +65,10 @@ set shiftwidth=2
 set expandtab 
 
 filetype plugin indent on
+
+" Markdown config
+au BufRead,BufNewFile *.md set filetype=markdown
+au FileType markdown setl tw=79
 
 set noswapfile
 set backspace=2
