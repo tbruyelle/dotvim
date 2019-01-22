@@ -1,5 +1,6 @@
 call plug#begin()
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+"Plugin 'stamblerre/gocode', {'rtp': 'nvim/'} " I changed my gocode for supporting go modules.
 Plug 'ervandew/supertab'
 "Plug 'Townk/vim-autoclose'
 Plug 'mileszs/ack.vim'
@@ -87,7 +88,7 @@ nmap <C-l> <C-W>l
 
 "vim-go mappings
 "show go-info under cursor0
-"let g:go_auto_type_info = 0
+let g:go_auto_type_info = 0
 let g:go_fmt_command = "goimports"
 "let g:go_fmt_options = "-s"
 

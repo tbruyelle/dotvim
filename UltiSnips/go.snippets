@@ -11,6 +11,15 @@ func ($1) $2(r *http.Request, args *$2Args, reply *$2Reply) error {
 }
 endsnippet 
 
+# table tests
+snippet fortt "table tests" b
+for _, tt := range tests {
+	t.Run(tt.name, func(t *testing.T) {
+		$1
+	})
+}
+endsnippet 
+
 # assert new
 snippet assn "assert := assert.New(t)" b
 assert := assert.New(t)
