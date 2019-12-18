@@ -39,6 +39,9 @@ endsnippet
 snippet reqe "require.NoError(err)" b
 require.NoError(err)
 endsnippet 
+snippet reqet "require.NoError(t, err)" b
+require.NoError(t, err)
+endsnippet 
 
 # assert no error
 snippet asse "assert.NoError(err)" 
@@ -204,6 +207,13 @@ endsnippet
 snippet errw "Error return WithStack " !b
 if err != nil {
 	return errors.WithStack(err)
+}
+${0}
+endsnippet
+
+snippet errdb "Error return ErrDb " !b
+if err != nil {
+	return pkg.WrapError(pkg.ErrDb, err)
 }
 ${0}
 endsnippet

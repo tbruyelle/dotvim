@@ -1,5 +1,5 @@
 call plug#begin()
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+Plug 'fatih/vim-go' ", {'do': ':GoUpdateBinaries'}
 "Plugin 'stamblerre/gocode', {'rtp': 'nvim/'} " I changed my gocode for supporting go modules.
 Plug 'ervandew/supertab'
 "Plug 'Townk/vim-autoclose'
@@ -7,8 +7,17 @@ Plug 'mileszs/ack.vim'
 Plug 'fatih/molokai'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
+Plug 'jparise/vim-graphql'
 "Plug 'Valloric/YouCompleteMe'
 call plug#end()
+
+" highlight line and column
+:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+" ctrlp works in working dir
+let g:ctrlp_working_path_mode = 0
 
 let g:ycm_complete_in_comments = 1
 "let g:ycm_auto_trigger = 0
@@ -67,6 +76,8 @@ set expandtab
 
 filetype plugin indent on
 
+au BufRead,BufNewFile *.vugu set filetype=html
+
 " Markdown config
 au BufRead,BufNewFile *.md set filetype=markdown
 au FileType markdown setl tw=79
@@ -76,7 +87,7 @@ set backspace=2
 "always show statusline
 set laststatus=2
 " Format the status line
-set stl=[%n]\ %t%m%r%h\ %w%y%<\ \ Cwd:%r%{getcwd()}%h\ \ %=\ Enc:%{strlen(&fenc)?&fenc:'none'},%{&ff}\ \ Line:%l\,%c\/%L\ \[%P\]
+set stl=[%n]\ %t%m%r%h\ %w%y%<\ \ Cwd:%r%{getcwd()}%h\ \ %=\ Enc:%{strlen(&fenc)?&fenc:'none'},%{&ff}\ \ Line:%l\,%c\/%L\ \[%P\]\ %o
 " Bubble single lines
 nmap <C-K> ddkP
 nmap <C-J> ddp
@@ -90,6 +101,8 @@ nmap <C-l> <C-W>l
 "show go-info under cursor0
 let g:go_auto_type_info = 0
 let g:go_fmt_command = "goimports"
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 "let g:go_fmt_options = "-s"
 
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
