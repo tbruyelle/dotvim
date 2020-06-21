@@ -82,6 +82,8 @@ au BufRead,BufNewFile *.vugu set filetype=html
 au BufRead,BufNewFile *.md set filetype=markdown
 au FileType markdown setl tw=79
 
+au BufRead,BufNewFile mail setl tw=72
+
 set noswapfile
 set backspace=2
 "always show statusline
@@ -103,6 +105,7 @@ let g:go_auto_type_info = 0
 let g:go_fmt_command = "goimports"
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
+let g:go_rename_command='gopls'
 "let g:go_fmt_options = "-s"
 
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
