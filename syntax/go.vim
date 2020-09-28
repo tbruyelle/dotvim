@@ -221,11 +221,11 @@ hi def link     goImaginaryFloat    Float
 
 " Extra types commonly seen
 "if go#config#HighlightExtraTypes()
-  syn match goExtraType /\<bytes\.\%(Buffer\)\>/
-  syn match goExtraType /\<context\.\%(Context\)\>/
-  syn match goExtraType /\<io\.\%(Reader\|ReadSeeker\|ReadWriter\|ReadCloser\|ReadWriteCloser\|Writer\|WriteCloser\|Seeker\)\>/
-  syn match goExtraType /\<reflect\.\%(Kind\|Type\|Value\)\>/
-  syn match goExtraType /\<unsafe\.Pointer\>/
+"  syn match goExtraType /\<bytes\.\%(Buffer\)\>/
+"  syn match goExtraType /\<context\.\%(Context\)\>/
+"  syn match goExtraType /\<io\.\%(Reader\|ReadSeeker\|ReadWriter\|ReadCloser\|ReadWriteCloser\|Writer\|WriteCloser\|Seeker\)\>/
+"  syn match goExtraType /\<reflect\.\%(Kind\|Type\|Value\)\>/
+"  syn match goExtraType /\<unsafe\.Pointer\>/
 "endif
 
 " Space-tab error
@@ -335,8 +335,8 @@ hi def link     goDeclType          Keyword
 
 " Variable Assignments
 "if go#config#HighlightVariableAssignments()
-  syn match goVarAssign /\v[_.[:alnum:]]+(,\s*[_.[:alnum:]]+)*\ze(\s*([-^+|^\/%&]|\*|\<\<|\>\>|\&\^)?\=[^=])/
-  hi def link   goVarAssign         Special
+"  syn match goVarAssign /\v[_.[:alnum:]]+(,\s*[_.[:alnum:]]+)*\ze(\s*([-^+|^\/%&]|\*|\<\<|\>\>|\&\^)?\=[^=])/
+"  hi def link   goVarAssign         Special
 "endif
 
 " Variable Declarations
