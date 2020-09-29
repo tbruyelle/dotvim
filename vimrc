@@ -1,5 +1,6 @@
 call plug#begin()
-Plug 'fatih/vim-go' ", {'do': ':GoUpdateBinaries'}
+"Plug 'fatih/vim-go' ", {'do': ':GoUpdateBinaries'}
+Plug 'govim/govim' ", {'do': ':GoUpdateBinaries'}
 "Plugin 'stamblerre/gocode', {'rtp': 'nvim/'} " I changed my gocode for supporting go modules.
 Plug 'ervandew/supertab'
 "Plug 'Townk/vim-autoclose'
@@ -12,9 +13,9 @@ Plug 'jparise/vim-graphql'
 call plug#end()
 
 " highlight line and column
-:hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-:hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-:nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 " ctrlp works in working dir
 let g:ctrlp_working_path_mode = 0
@@ -62,17 +63,17 @@ map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
 "close quickfix mapping
 nnoremap <leader>a :cclose<CR>
-" show filepath 
+" show filepath
 nnoremap <leader>f :echo @%<CR>
 
 "filetype off
 "set runtimepath+=$GOROOT/misc/vim
 "autocmd BufWritePost *.go :silent Fmt
 
-set tabstop=2 
+set tabstop=2
 set softtabstop=2
-set shiftwidth=2 
-set expandtab 
+set shiftwidth=2
+set expandtab
 
 filetype plugin indent on
 
@@ -146,3 +147,46 @@ set so=7
 
 set relativenumber
 set number
+
+" To get hover working in the terminal we need to set ttymouse. See
+"
+" :help ttymouse
+"
+" for the appropriate setting for your terminal. Note that despite the
+" automated tests using xterm as the terminal, a setting of ttymouse=xterm
+" does not work correctly beyond a certain column number (citation needed)
+" hence we use ttymouse=sgr
+set ttymouse=sgr
+
+" Suggestion: By default, govim populates the quickfix window with diagnostics
+" reported by gopls after a period of inactivity, the time period being
+" defined by updatetime (help updatetime). Here we suggest a short updatetime
+" time in order that govim/Vim are more responsive/IDE-like
+set updatetime=500
+
+" Suggestion: To make govim/Vim more responsive/IDE-like, we suggest a short
+" balloondelay
+set balloondelay=250
+
+" Suggestion: Turn on the sign column so you can see error marks on lines
+" where there are quickfix errors. Some users who already show line number
+" might prefer to instead have the signs shown in the number column; in which
+" case set signcolumn=number
+set signcolumn=yes
+
+" Suggestion: turn on auto-indenting. If you want closing parentheses, braces
+" etc to be added, https://github.com/jiangmiao/auto-pairs. In future we might
+" include this by default in govim.
+set autoindent
+set smartindent
+filetype indent on
+
+" Suggestion: define sensible backspace behaviour. See :help backspace for
+" more details
+set backspace=2
+
+" Suggestion: show info for completion candidates in a popup menu
+if has("patch-8.1.1904")
+  set completeopt+=popup
+  set completepopup=align:menu,border:off,highlight:Pmenu
+endif
