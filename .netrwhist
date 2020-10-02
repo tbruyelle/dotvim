@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/thomas/src/ke'
 let g:netrw_dirhist_8='/home/thomas/src/ke/exp/fakeapp'
 let g:netrw_dirhist_7='/home/thomas/src/nirvana/templates'
 let g:netrw_dirhist_6='/home/thomas/projects/infra/kubernetes/env/customer'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_3='/home/thomas/src/front/assets/js/viewer/components/Viewer
 let g:netrw_dirhist_2='/home/thomas/src/ke'
 let g:netrw_dirhist_1='/home/thomas/go/src/github.com/vugu/vugu/wasm-test-suite/test-007-issue-85'
 let g:netrw_dirhist_0='/home/thomas/src/ke/pkg/mongo'
-let g:netrw_dirhist_9='/home/thomas/src/ke/backend/engine/activity'
