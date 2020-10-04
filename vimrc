@@ -35,7 +35,7 @@ inoremap <Right> <nop>
 " format html on save
 augroup write_html
   autocmd!
-  autocmd BufWritePre *.html :normal gg=G
+  autocmd BufWritePre *.html :normal gg=G ``
 augroup END
 
 " highlight line and column
