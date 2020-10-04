@@ -18,6 +18,26 @@ let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
 
+" edit vimrc
+nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <Leader>sv :source $MYVIMRC<cr>
+
+" force use hjkl
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+nnoremap <Left> <nop>
+nnoremap <Right> <nop> Hello &mdash; world
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+
+" format html on save
+augroup write_html
+  autocmd!
+  autocmd BufWritePre *.html :normal gg=G
+augroup END
+
 " highlight line and column
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
@@ -32,9 +52,9 @@ map <C-Up> :lprevious<CR>
 "close location mapping
 nnoremap <leader>q :lclose<CR>
 "cnext/cprevious mapping on quickfix
-map <C-l> :cla<CR>
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
+noremap <C-l> :clast<CR>
+noremap <C-n> :cnext<CR>
+noremap <C-m> :cprevious<CR>
 "close quickfix mapping
 nnoremap <leader>a :cclose<CR>
 " show filepath
@@ -103,7 +123,7 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap gd <Plug>(go-def-split)
 "go commands
 au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b :GOVIMQuickfixDiagnostics<cr>
+au FileType go nmap <leader>b :cwindow<cr>
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>I <Plug>(go-install)
 au FileType go nmap <leader>c <Plug>(go-callers)
