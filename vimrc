@@ -26,7 +26,7 @@ nnoremap <Leader>sv :source $MYVIMRC<cr>
 nnoremap <Up> <nop>
 nnoremap <Down> <nop>
 nnoremap <Left> <nop>
-nnoremap <Right> <nop> Hello &mdash; world
+nnoremap <Right> <nop>
 inoremap <Up> <nop>
 inoremap <Down> <nop>
 inoremap <Left> <nop>
