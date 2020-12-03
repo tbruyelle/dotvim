@@ -1,5 +1,6 @@
 call plug#begin()
-Plug 'https://git.sr.ht/~tbruyelle/mds'
+"Plug 'https://git.sr.ht/~tbruyelle/mds'
+"Plug '~/src/mds'
 "Plug 'fatih/vim-go' ", {'do': ':GoUpdateBinaries'}
 Plug 'govim/govim' ", {'do': ':GoUpdateBinaries'}
 "Plugin 'stamblerre/gocode', {'rtp': 'nvim/'} " I changed my gocode for supporting go modules.
