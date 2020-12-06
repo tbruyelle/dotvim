@@ -24,6 +24,9 @@ colorscheme molokai
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
+" goto file edits file
+nnoremap gf :e <cfile><CR>
+
 " force use hjkl
 nnoremap <Up> <nop>
 nnoremap <Down> <nop>
