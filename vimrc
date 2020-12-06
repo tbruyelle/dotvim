@@ -43,6 +43,11 @@ augroup write_html
   autocmd BufWritePre *.html :normal gg=G ``
 augroup END
 
+augroup filetype_go
+  autocmd!
+  autocmd FileType go nnoremap <buffer> <localleader>c I//<esc>
+augroup END
+
 " highlight line and column
 hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
