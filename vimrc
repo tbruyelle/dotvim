@@ -1,4 +1,4 @@
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 "Plug 'https://git.sr.ht/~tbruyelle/mds'
 "Plug '~/src/mds'
 "Plug 'fatih/vim-go' ", {'do': ':GoUpdateBinaries'}
@@ -10,7 +10,7 @@ Plug 'mileszs/ack.vim'
 Plug 'fatih/molokai'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
-Plug 'jparise/vim-graphql'
+"Plug 'jparise/vim-graphql'
 call plug#end()
 
 " Colorscheme
@@ -49,9 +49,9 @@ augroup filetype_go
 augroup END
 
 " highlight line and column
-hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+hi CursorLine   cterm=NONE ctermbg=black  guibg=black
+hi CursorColumn cterm=NONE ctermbg=black  guibg=black
+nnoremap <Leader>x :set cursorline! cursorcolumn!<CR>
 
 "cnext/cprevious mapping on location
 map <C-Left> :bp<CR>
@@ -140,7 +140,7 @@ au FileType go nmap <leader>c <Plug>(go-callers)
 au FileType go nmap <leader>r <Plug>(go-referrers)
 nmap <Leader>d :GoDeclsDir<cr>
 
-nnoremap <C-\> 0wi//<space><esc>
+nnoremap <C-\> 0wi//<space><esc>j
 vnoremap <C-\> 0I//<space><esc>
 "nnoremap <expr> <C-\> stridx(getline(.), '//')==-1 ? '<C-]>' : '<C-[>'
 
@@ -191,3 +191,8 @@ endif
 inoremap tgk #TG-romain-keen-eye-platform-
 inoremap tgu #TG-romain-unicorn-
 iabbrev KE keen-eye-technologies.com
+
+" jk to <esc>
+inoremap jk <esc>
+"inoremap <esc> <nop>
+
