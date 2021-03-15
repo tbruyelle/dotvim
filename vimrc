@@ -8,8 +8,9 @@ Plug 'ervandew/supertab'
 "Plug 'Townk/vim-autoclose'
 Plug 'mileszs/ack.vim'
 Plug 'fatih/molokai'
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-fugitive'
 "Plug 'jparise/vim-graphql'
 call plug#end()
 
@@ -23,6 +24,8 @@ colorscheme molokai
 " edit vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
+
+nnoremap <C-p> :FZF<cr>
 
 " goto file edits file
 nnoremap gf :e <cfile><CR>
@@ -52,6 +55,12 @@ augroup END
 hi CursorLine   cterm=NONE ctermbg=black  guibg=black
 hi CursorColumn cterm=NONE ctermbg=black  guibg=black
 nnoremap <Leader>x :set cursorline! cursorcolumn!<CR>
+
+" highlight diffs
+hi DiffAdd ctermfg=NONE ctermbg=green guifg=#dadada guibg=#3a3a3a
+hi DiffDelete ctermfg=NONE ctermbg=red guifg=#dadada guibg=#3a3a3a
+hi DiffChange ctermfg=none ctermbg=237 guifg=#dadada guibg=#3a3a3a
+hi DiffText ctermfg=none ctermbg=none guifg=#dadada guibg=#3a3a3a
 
 "cnext/cprevious mapping on location
 map <C-Left> :bp<CR>
@@ -132,12 +141,12 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap gd <Plug>(go-def-split)
 "go commands
 au FileType go nmap <leader>i :call GOVIMHover()<cr>
-au FileType go nmap <leader>r :GOVIMRename<space>
+au FileType go nmap <leader>r :GOVIMRename<cr>
 au FileType go nmap <leader>b :cwindow<cr>
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>I <Plug>(go-install)
 au FileType go nmap <leader>c <Plug>(go-callers)
-au FileType go nmap <leader>r <Plug>(go-referrers)
+"au FileType go nmap <leader>r <Plug>(go-referrers)
 nmap <Leader>d :GoDeclsDir<cr>
 
 nnoremap <C-\> 0wi//<space><esc>j
