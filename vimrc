@@ -46,11 +46,6 @@ augroup write_html
   autocmd BufWritePre *.html :normal gg=G ``
 augroup END
 
-augroup filetype_go
-  autocmd!
-  autocmd FileType go nnoremap <buffer> <localleader>c I//<esc>
-augroup END
-
 " highlight line and column
 hi CursorLine   cterm=NONE ctermbg=black  guibg=black
 hi CursorColumn cterm=NONE ctermbg=black  guibg=black
@@ -141,17 +136,21 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap gd <Plug>(go-def-split)
 "go commands
 au FileType go nmap <leader>i :call GOVIMHover()<cr>
-au FileType go nmap <leader>r :GOVIMRename<cr>
+au FileType go nmap <leader>rr :GOVIMRename<cr>
 au FileType go nmap <leader>b :cwindow<cr>
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>I <Plug>(go-install)
-au FileType go nmap <leader>c <Plug>(go-callers)
+au FileType go nmap <leader>rf :GOVIMReferences<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 nmap <Leader>d :GoDeclsDir<cr>
+"call govim#config#Set("ExperimentalProgressPopups", 1)
 
 nnoremap <C-\> 0wi//<space><esc>j
 vnoremap <C-\> 0I//<space><esc>
 "nnoremap <expr> <C-\> stridx(getline(.), '//')==-1 ? '<C-]>' : '<C-[>'
+
+" C-r ask input for  a replacement of selected text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " To get hover working in the terminal we need to set ttymouse. See
 "
