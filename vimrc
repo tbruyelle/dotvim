@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 "Plug '~/src/mds'
 "Plug 'fatih/vim-go' ", {'do': ':GoUpdateBinaries'}
 Plug 'govim/govim'
+Plug 'jjo/vim-cue'
 "Plugin 'stamblerre/gocode', {'rtp': 'nvim/'} " I changed my gocode for supporting go modules.
 Plug 'ervandew/supertab'
 "Plug 'Townk/vim-autoclose'
@@ -137,7 +138,7 @@ au FileType go nmap gd <Plug>(go-def-split)
 "go commands
 au FileType go nmap <leader>i :call GOVIMHover()<cr>
 au FileType go nmap <leader>rr :GOVIMRename<cr>
-au FileType go nmap <leader>b :cwindow<cr>
+au FileType go nmap <leader>b :GOVIMQuickfixDiagnostics<cr>
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>I <Plug>(go-install)
 au FileType go nmap <leader>rf :GOVIMReferences<cr>
@@ -197,8 +198,9 @@ endif
 
 " abbrev
 inoremap tgk #TG-romain-keen-eye-platform-
-inoremap tgu #TG-romain-unicorn-
 iabbrev KE keen-eye-technologies.com
+au FileType go :iabbrev pln fmt.Println("
+au FileType go :iabbrev pfn fmt.Printf("
 
 " jk to <esc>
 inoremap jk <esc>
