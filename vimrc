@@ -146,6 +146,15 @@ au FileType go nmap <leader>rf :GOVIMReferences<cr>
 nmap <Leader>d :GoDeclsDir<cr>
 "call govim#config#Set("ExperimentalProgressPopups", 1)
 
+" \cc display the current buffer in qf list
+nnoremap <Leader>cc :call BufferQF()<cr>
+function BufferQF()
+  let name = escape(bufname(), "/")
+  execute "copen"
+  execute "normal /" . name . ""
+  execute "cr " . line(".")
+endfunction
+
 nnoremap <C-\> 0wi//<space><esc>j
 vnoremap <C-\> 0I//<space><esc>
 "nnoremap <expr> <C-\> stridx(getline(.), '//')==-1 ? '<C-]>' : '<C-[>'
