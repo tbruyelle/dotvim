@@ -1,6 +1,4 @@
 call plug#begin('~/.vim/plugged')
-"Plug 'https://git.sr.ht/~tbruyelle/mds'
-"Plug '~/src/mds'
 "Plug 'fatih/vim-go' ", {'do': ':GoUpdateBinaries'}
 Plug 'govim/govim'
 Plug 'jjo/vim-cue'
@@ -26,6 +24,12 @@ colorscheme molokai
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
+" git
+nnoremap GG :G 
+nnoremap GC :G commit -a<cr>
+nnoremap GP :G push -u<cr>
+
+" Fuzzy finder
 nnoremap <C-p> :FZF<cr>
 
 " goto file edits file
