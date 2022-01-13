@@ -25,8 +25,8 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " git
-nnoremap GC :G commit -a<cr>
-nnoremap GP :G push -u<cr>
+nnoremap gc :G commit -a<cr>
+nnoremap gp :G push -u<cr>
 
 " Fuzzy finder
 nnoremap <C-p> :FZF<cr>
