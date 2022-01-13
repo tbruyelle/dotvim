@@ -25,7 +25,6 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " git
-nnoremap GG :G 
 nnoremap GC :G commit -a<cr>
 nnoremap GP :G push -u<cr>
 
