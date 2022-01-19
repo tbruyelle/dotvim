@@ -158,6 +158,24 @@ function BufferQF()
   execute "cr " . line(".")
 endfunction
 
+" \qq feed the qf with conflicted files
+nnoremap <Leader>qq :call ConflictToQF()<cr>
+function ConflictToQF()
+  let files = system("git status -s|grep -v M|awk '{print $2}'")
+  "echo 'files'.files
+  let qf = []
+  for file in split(files, "\n")
+    " try to get the conflict line number
+    let line = system("grep -n '<<<' ".file." | cut -f1 -d:")
+    " append to qf list
+    call add(qf,{'filename':file, 'lnum':line})
+  endfor
+  "echo qf
+  call setqflist(qf)
+  execute "copen"
+  execute "cc"
+endfunction
+
 nnoremap <C-\> 0wi//<space><esc>j
 vnoremap <C-\> 0I//<space><esc>
 "nnoremap <expr> <C-\> stridx(getline(.), '//')==-1 ? '<C-]>' : '<C-[>'
