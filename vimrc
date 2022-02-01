@@ -30,6 +30,7 @@ nnoremap <Leader>gp :G push -u<cr>
 nnoremap <Leader>gd :G diff<cr>
 nnoremap <Leader>ga :G add -A<cr>
 nnoremap <Leader>gs :G status -sb<cr>
+nnoremap <Leader>gr :G rebase --continue<cr>
 
 
 " Fuzzy finder
