@@ -191,7 +191,7 @@ vnoremap <C-\> 0I//<space><esc>
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 " /-- write a comment separator
-nnoremap <Leader>-- O<esc>O//-------------------------------<cr>// 
+nnoremap <Leader>-- O<esc>O//-----------------------------------------<cr>// 
 
 " To get hover working in the terminal we need to set ttymouse. See
 "
