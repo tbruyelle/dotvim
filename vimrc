@@ -168,8 +168,11 @@ endfunction
 " \qq feed the qf with conflicted files
 nnoremap <Leader>qq :call ConflictToQF()<cr>
 function ConflictToQF()
-  let files = system("git status -s|grep -v M|awk '{print $2}'")
-  "echo 'files'.files
+  let files = system("git diff --name-only --diff-filter=U")
+  if files == ""
+    echo "no conflits detected"
+    return
+  endif
   let qf = []
   for file in split(files, "\n")
     " try to get the conflict line number
