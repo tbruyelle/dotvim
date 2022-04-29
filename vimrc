@@ -154,7 +154,7 @@ au FileType go nmap <leader>rf :GOVIMReferences<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 nmap <Leader>d :GoDeclsDir<cr>
 "call govim#config#Set("ExperimentalProgressPopups", 1)
-call govim#config#Set("Gofumpt", 1)
+"call govim#config#Set("Gofumpt", 1)
 
 " \cc display the current buffer in qf list
 nnoremap <Leader>cc :call BufferQF()<cr>
