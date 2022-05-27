@@ -11,7 +11,13 @@ Plug 'fatih/molokai'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
 "Plug 'jparise/vim-graphql'
+" Zen mode, turn on with :Goyo
+Plug 'junegunn/goyo.vim'
 call plug#end()
+
+let $GOFLAGS="-tags=sdk_v44"
+" associate gno file as go
+autocmd BufNewFile,BufRead *.gno set syntax=go
 
 " Colorscheme
 syntax enable
@@ -19,7 +25,7 @@ set t_Co=256
 let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
-set colorcolumn=80
+"set colorcolumn=80
 
 " edit vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
@@ -151,6 +157,7 @@ au FileType go nmap <leader>b :GOVIMQuickfixDiagnostics<cr>
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>I <Plug>(go-install)
 au FileType go nmap <leader>rf :GOVIMReferences<cr>
+au FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 nmap <Leader>d :GoDeclsDir<cr>
 "call govim#config#Set("ExperimentalProgressPopups", 1)
@@ -248,5 +255,6 @@ au FileType go :iabbrev pfn fmt.Printf("
 
 " jk to <esc>
 inoremap jk <esc>
+"iunmap jk
 "inoremap <esc> <nop>
 
