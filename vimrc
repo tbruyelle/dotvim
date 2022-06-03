@@ -142,9 +142,6 @@ let g:SuperTabDefaultCompletionType = "context"
 
 
 " Go stuff
-let $GOFLAGS="-tags=sdk_v42"
-" associate gno file as go
-autocmd BufNewFile,BufRead *.gno set syntax=go
 
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
 au FileType go nmap <Leader>gd <Plug>(go-doc)
@@ -162,6 +159,24 @@ au FileType go nmap <leader>ri :GOVIMImplements<cr>
 nmap <Leader>d :GoDeclsDir<cr>
 "call govim#config#Set("ExperimentalProgressPopups", 1)
 "call govim#config#Set("Gofumpt", 1)
+
+" \tt ask set a new build tag
+nnoremap <Leader>tt :call SetBuildTag()<cr>
+function SetBuildTag()
+  let tag = input($GOFLAGS.' - Input new build tag: ')
+  let line = 'let $GOFLAGS="-tags="'.tag.'"'
+  call writefile([line], glob('~/gotags.vim'))
+  redraw
+  echomsg line.' now quit and restart vim'
+endfunction
+try
+  source ~/gotags.vim
+catch
+  " no gotags
+endtry
+
+" associate gno file as go
+autocmd BufNewFile,BufRead *.gno set syntax=go
 
 " \cc display the current buffer in qf list
 nnoremap <Leader>cc :call BufferQF()<cr>
