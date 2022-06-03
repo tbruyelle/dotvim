@@ -35,7 +35,6 @@ nnoremap <Leader>ga :G add -A<cr>
 nnoremap <Leader>gs :G status -sb<cr>
 nnoremap <Leader>gr :G rebase --continue<cr>
 
-
 " Fuzzy finder
 nnoremap <C-p> :FZF<cr>
 
