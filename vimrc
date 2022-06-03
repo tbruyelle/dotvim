@@ -15,17 +15,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/goyo.vim'
 call plug#end()
 
-let $GOFLAGS="-tags=sdk_v44"
-" associate gno file as go
-autocmd BufNewFile,BufRead *.gno set syntax=go
-
 " Colorscheme
 syntax enable
 set t_Co=256
 let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
-"set colorcolumn=80
+set colorcolumn=80
 
 " edit vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
@@ -145,6 +141,11 @@ let g:ackprg = 'ag --vimgrep'
 " supertab use gocode
 let g:SuperTabDefaultCompletionType = "context"
 
+
+" Go stuff
+let $GOFLAGS="-tags=sdk_v42"
+" associate gno file as go
+autocmd BufNewFile,BufRead *.gno set syntax=go
 
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
 au FileType go nmap <Leader>gd <Plug>(go-doc)
