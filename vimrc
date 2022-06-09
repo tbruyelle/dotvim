@@ -28,6 +28,7 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " git
+nnoremap <Leader>g :G<cr>
 nnoremap <Leader>gc :G commit -a<cr>
 nnoremap <Leader>gp :G push -u<cr>
 nnoremap <Leader>gd :G diff<cr>
@@ -164,7 +165,7 @@ nmap <Leader>d :GoDeclsDir<cr>
 nnoremap <Leader>tt :call SetBuildTag()<cr>
 function SetBuildTag()
   let tag = input($GOFLAGS.' - Input new build tag: ')
-  let line = 'let $GOFLAGS="-tags="'.tag.'"'
+  let line = 'let $GOFLAGS="-tags='.tag.'"'
   call writefile([line], glob('~/gotags.vim'))
   redraw
   echomsg line.' now quit and restart vim'
