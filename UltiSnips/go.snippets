@@ -310,12 +310,12 @@ func ${1:name}(${2:params})${3/(.+)/ /}`!p opening_par(snip, 3)`$3`!p closing_pa
 endsnippet
 
 # Fmt Printf debug
-snippet ff "fmt.Printf(...)"
+snippet pf "fmt.Printf(...)"
 fmt.Printf("${1:${VISUAL}} = %+v\n", $1)
 endsnippet
 
 # Fmt Println debug
-snippet fn "fmt.Println(...)"
+snippet pn "fmt.Println(...)"
 fmt.Println("${1:${VISUAL}}")
 endsnippet
 
@@ -373,7 +373,7 @@ ${0}
 endsnippet
 
 # panic
-snippet pn "panic()"
+snippet pa "panic()"
 panic("${0:msg}")
 endsnippet
 

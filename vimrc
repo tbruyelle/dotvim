@@ -39,8 +39,13 @@ nnoremap <Leader>gr :G rebase --continue<cr>
 " Fuzzy finder
 nnoremap <C-p> :FZF<cr>
 
+" ag search
+nnoremap <Leader>s :Ack 
+
 " goto file edits file
 nnoremap gf :e <cfile><CR>
+" open dir of current buffer
+nnoremap <Leader>d :e %:p:h<CR>
 
 " force use hjkl
 nnoremap <Up> <nop>
@@ -157,9 +162,8 @@ au FileType go nmap <leader>I <Plug>(go-install)
 au FileType go nmap <leader>rf :GOVIMReferences<cr>
 au FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
-nmap <Leader>d :GoDeclsDir<cr>
 "call govim#config#Set("ExperimentalProgressPopups", 1)
-"call govim#config#Set("Gofumpt", 1)
+call govim#config#Set("Gofumpt", 1)
 
 " \tt ask set a new build tag
 nnoremap <Leader>tt :call SetBuildTag()<cr>
