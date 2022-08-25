@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 "Plug 'fatih/vim-go' ", {'do': ':GoUpdateBinaries'}
 Plug 'govim/govim'
+Plug 'junegunn/fzf.vim'
 Plug 'jjo/vim-cue'
 "Plugin 'stamblerre/gocode', {'rtp': 'nvim/'} " I changed my gocode for supporting go modules.
 Plug 'ervandew/supertab'
@@ -11,6 +12,7 @@ Plug 'fatih/molokai'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
 "Plug 'jparise/vim-graphql'
+Plug 'tarekbecker/vim-yaml-formatter'
 " Zen mode, turn on with :Goyo
 Plug 'junegunn/goyo.vim'
 call plug#end()
@@ -38,6 +40,9 @@ nnoremap <Leader>gr :G rebase --continue<cr>
 
 " Fuzzy finder
 nnoremap <C-p> :FZF<cr>
+nnoremap <C-b> :Buffers<cr>
+nnoremap <C-g> :GFiles?<cr>
+let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 
 " ag search
 nnoremap <Leader>s :Ack 
@@ -46,6 +51,8 @@ nnoremap <Leader>s :Ack
 nnoremap gf :e <cfile><CR>
 " open dir of current buffer
 nnoremap <Leader>d :e %:p:h<CR>
+" quick buffer switch
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
 
 " force use hjkl
 nnoremap <Up> <nop>
@@ -62,6 +69,9 @@ augroup write_html
   autocmd!
   autocmd BufWritePre *.html :normal gg=G ``
 augroup END
+
+" yaml format
+"autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " highlight line and column
 hi CursorLine   cterm=NONE ctermbg=black  guibg=black
@@ -156,14 +166,15 @@ au FileType go nmap gd <Plug>(go-def-split)
 "go commands
 au FileType go nmap <leader>i :call GOVIMHover()<cr>
 au FileType go nmap <leader>rr :GOVIMRename<cr>
-au FileType go nmap <leader>b :GOVIMQuickfixDiagnostics<cr>
+au FileType go nmap <leader>c :GOVIMQuickfixDiagnostics<cr>
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>I <Plug>(go-install)
 au FileType go nmap <leader>rf :GOVIMReferences<cr>
 au FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 "call govim#config#Set("ExperimentalProgressPopups", 1)
-call govim#config#Set("Gofumpt", 1)
+call govim#config#Set("Gofumpt", 0)
+call govim#config#Set("GoImportsLocalPrefix", "github.com/ignite/cli")
 
 " \tt ask set a new build tag
 nnoremap <Leader>tt :call SetBuildTag()<cr>
