@@ -173,7 +173,7 @@ au FileType go nmap <leader>rf :GOVIMReferences<cr>
 au FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 "call govim#config#Set("ExperimentalProgressPopups", 1)
-call govim#config#Set("Gofumpt", 0)
+call govim#config#Set("Gofumpt", 1)
 call govim#config#Set("GoImportsLocalPrefix", "github.com/ignite/cli")
 
 " \tt ask set a new build tag
