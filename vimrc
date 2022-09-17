@@ -78,12 +78,6 @@ hi CursorLine   cterm=NONE ctermbg=black  guibg=black
 hi CursorColumn cterm=NONE ctermbg=black  guibg=black
 nnoremap <Leader>x :set cursorline! cursorcolumn!<CR>
 
-" highlight diffs
-hi DiffAdd ctermfg=NONE ctermbg=green guifg=#dadada guibg=#3a3a3a
-hi DiffDelete ctermfg=NONE ctermbg=red guifg=#dadada guibg=#3a3a3a
-hi DiffChange ctermfg=none ctermbg=237 guifg=#dadada guibg=#3a3a3a
-hi DiffText ctermfg=none ctermbg=none guifg=#dadada guibg=#3a3a3a
-
 "cnext/cprevious mapping on location
 map <C-Left> :bp<CR>
 map <C-Right> :bn<CR>
@@ -104,7 +98,7 @@ nnoremap <leader>f :echo @%<CR>
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set expandtab
+set noexpandtab
 set noswapfile
 "always show statusline
 set laststatus=2
@@ -192,7 +186,7 @@ catch
 endtry
 
 " associate gno file as go
-autocmd BufNewFile,BufRead *.gno set syntax=go
+autocmd BufNewFile,BufRead *.gno set filetype=go
 
 " \cc display the current buffer in qf list
 nnoremap <Leader>cc :call BufferQF()<cr>
