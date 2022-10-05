@@ -66,8 +66,8 @@ inoremap <Right> <nop>
 
 " format html on save
 augroup write_html
-  autocmd!
-  autocmd BufWritePre *.html :normal gg=G ``
+	autocmd!
+	autocmd BufWritePre *.html :normal gg=G ``
 augroup END
 
 " yaml format
@@ -173,49 +173,77 @@ call govim#config#Set("GoImportsLocalPrefix", "github.com/ignite/cli")
 " \tt ask set a new build tag
 nnoremap <Leader>tt :call SetBuildTag()<cr>
 function SetBuildTag()
-  let tag = input($GOFLAGS.' - Input new build tag: ')
-  let line = 'let $GOFLAGS="-tags='.tag.'"'
-  call writefile([line], glob('~/gotags.vim'))
-  redraw
-  echomsg line.' now quit and restart vim'
+	let tag = input($GOFLAGS.' - Input new build tag: ')
+	let line = 'let $GOFLAGS="-tags='.tag.'"'
+	call writefile([line], glob('~/gotags.vim'))
+	redraw
+	echomsg line.' now quit and restart vim'
 endfunction
 try
-  source ~/gotags.vim
+	source ~/gotags.vim
 catch
-  " no gotags
+	" no gotags
 endtry
 
-" associate gno file as go
-autocmd BufNewFile,BufRead *.gno set filetype=go
+" Gno config
+function! GnoFmt()
+	cexpr system('gofumpt -e -w ' . expand('%'))
+	edit!
+endfunction
+command! GnoFmt call GnoFmt()
+augroup gno_autocmd
+	autocmd!
+	autocmd BufNewFile,BufRead *.gno set filetype=go
+	autocmd BufWritePost *.gno GnoFmt
+augroup END
+
+" Format go.plush files
+function! GoPlushFmt()
+	execute "silent! %s/<%= /appxxxx/g"
+	execute "silent! %s/ %>/appyyyy/g"
+	execute "silent! write!"
+	cexpr system('gofumpt -e -w ' . expand('%'))
+	cexpr system('goimports -w -local appxxxx ' . expand('%'))
+	edit!
+	execute "silent! %s/appxxxx/<%= /g"
+	execute "silent! %s/appyyyy/ %>/g"
+	execute "silent! write!"
+endfunction
+command! GoPlushFmt call GoPlushFmt()
+augroup goplush_autocmd
+	autocmd!
+	autocmd BufNewFile,BufRead *.go.plush set filetype=go
+	autocmd BufWritePost *.go.plush GoPlushFmt
+augroup END
 
 " \cc display the current buffer in qf list
 nnoremap <Leader>cc :call BufferQF()<cr>
 function BufferQF()
-  let name = escape(bufname(), "/")
-  execute "copen"
-  execute "normal /" . name . ""
-  execute "cr " . line(".")
+	let name = escape(bufname(), "/")
+	execute "copen"
+	execute "normal /" . name . ""
+	execute "cr " . line(".")
 endfunction
 
 " \qq feed the qf with conflicted files
 nnoremap <Leader>qq :call ConflictToQF()<cr>
 function ConflictToQF()
-  let files = system("git diff --name-only --diff-filter=U")
-  if files == ""
-    echo "no conflits detected"
-    return
-  endif
-  let qf = []
-  for file in split(files, "\n")
-    " try to get the conflict line number
-    let line = system("grep -n '<<<' ".file." | cut -f1 -d:")
-    " append to qf list
-    call add(qf,{'filename':file, 'lnum':line})
-  endfor
-  "echo qf
-  call setqflist(qf)
-  execute "copen"
-  execute "cc"
+	let files = system("git diff --name-only --diff-filter=U")
+	if files == ""
+		echo "no conflits detected"
+		return
+	endif
+	let qf = []
+	for file in split(files, "\n")
+		" try to get the conflict line number
+		let line = system("grep -n '<<<' ".file." | cut -f1 -d:")
+		" append to qf list
+		call add(qf,{'filename':file, 'lnum':line})
+	endfor
+	"echo qf
+	call setqflist(qf)
+	execute "copen"
+	execute "cc"
 endfunction
 
 nnoremap <C-\> 0wi//<space><esc>j
@@ -267,8 +295,8 @@ set backspace=2
 
 " Suggestion: show info for completion candidates in a popup menu
 if has("patch-8.1.1904")
-  set completeopt+=popup
-  set completepopup=align:menu,border:off,highlight:Pmenu
+	set completeopt+=popup
+	set completepopup=align:menu,border:off,highlight:Pmenu
 endif
 
 " abbrev
