@@ -199,14 +199,14 @@ augroup END
 
 " Format go.plush files
 function! GoPlushFmt()
-	execute "silent! %s/<%= /appxxxx/g"
-	execute "silent! %s/ %>/appyyyy/g"
+	execute "silent! %s/<%= /appxxxx/g|norm!``"
+	execute "silent! %s/ %>/appyyyy/g|norm!``"
 	execute "silent! write!"
 	cexpr system('gofumpt -e -w ' . expand('%'))
 	cexpr system('goimports -w -local appxxxx ' . expand('%'))
 	edit!
-	execute "silent! %s/appxxxx/<%= /g"
-	execute "silent! %s/appyyyy/ %>/g"
+	execute "silent! %s/appxxxx/<%= /g|norm!``"
+	execute "silent! %s/appyyyy/ %>/g|norm!``"
 	execute "silent! write!"
 endfunction
 command! GoPlushFmt call GoPlushFmt()
