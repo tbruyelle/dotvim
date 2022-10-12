@@ -11,6 +11,8 @@ Plug 'fatih/molokai'
 "Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
+" fzf for checkout git branches
+Plug 'stsewd/fzf-checkout.vim'
 "Plug 'jparise/vim-graphql'
 Plug 'tarekbecker/vim-yaml-formatter'
 " Zen mode, turn on with :Goyo
@@ -37,6 +39,9 @@ nnoremap <Leader>gd :G diff<cr>
 nnoremap <Leader>ga :G add -A<cr>
 nnoremap <Leader>gs :G status -sb<cr>
 nnoremap <Leader>gr :G rebase --continue<cr>
+nnoremap <Leader>gb :GBranches<cr>
+" Gbranches sort by date
+let g:fzf_checkout_git_options = '--sort=-committerdate'
 
 " Fuzzy finder
 nnoremap <C-p> :FZF<cr>
