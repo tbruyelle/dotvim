@@ -39,7 +39,7 @@ nnoremap <Leader>gd :G diff<cr>
 nnoremap <Leader>ga :G add -A<cr>
 nnoremap <Leader>gs :G status -sb<cr>
 nnoremap <Leader>gr :G rebase --continue<cr>
-nnoremap <Leader>gb :GBranches<cr>
+nnoremap <Leader>gb :GBranches --locals<cr>
 " Gbranches sort by date
 let g:fzf_checkout_git_options = '--sort=-committerdate'
 
