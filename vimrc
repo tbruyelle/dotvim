@@ -1,5 +1,4 @@
 call plug#begin('~/.vim/plugged')
-"Plug 'fatih/vim-go' ", {'do': ':GoUpdateBinaries'}
 Plug 'govim/govim'
 Plug 'junegunn/fzf.vim'
 Plug 'jjo/vim-cue'
@@ -11,6 +10,8 @@ Plug 'fatih/molokai'
 "Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
+" GDiff {rev} for code review
+Plug 'oguzbilgic/vim-gdiff'
 " fzf for checkout git branches
 Plug 'stsewd/fzf-checkout.vim'
 "Plug 'jparise/vim-graphql'
@@ -35,7 +36,8 @@ nnoremap <Leader>sv :source $MYVIMRC<cr>
 nnoremap <Leader>g :G<cr>
 nnoremap <Leader>gc :G commit -a<cr>
 nnoremap <Leader>gp :G push -u<cr>
-nnoremap <Leader>gd :G diff<cr>
+nnoremap <Leader>dd :Gdiff main<cr>
+nnoremap <Leader>gd :Gvdiffsplit main:%<cr>
 nnoremap <Leader>ga :G add -A<cr>
 nnoremap <Leader>gs :G status -sb<cr>
 nnoremap <Leader>gr :G rebase --continue<cr>
@@ -159,8 +161,8 @@ let g:SuperTabDefaultCompletionType = "context"
 " Go stuff
 
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+"au FileType go nmap <Leader>gd <Plug>(go-doc)
+"au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap gd <Plug>(go-def-split)
 "go commands
 au FileType go nmap <leader>i :call GOVIMHover()<cr>
@@ -221,7 +223,7 @@ augroup goplush_autocmd
 	autocmd BufWritePost *.go.plush GoPlushFmt
 augroup END
 
-" \cc display the current buffer in qf list
+" \cc select the current buffer filename in qf list
 nnoremap <Leader>cc :call BufferQF()<cr>
 function BufferQF()
 	let name = escape(bufname(), "/")
