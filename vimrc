@@ -36,8 +36,8 @@ nnoremap <Leader>sv :source $MYVIMRC<cr>
 nnoremap <Leader>g :G<cr>
 nnoremap <Leader>gc :G commit -a<cr>
 nnoremap <Leader>gp :G push -u<cr>
-nnoremap <Leader>dd :Gdiff main<cr>
-nnoremap <Leader>gd :Gvdiffsplit main:%<cr>
+nnoremap <Leader>gd :Gdiff main<cr>
+nnoremap <Leader>gg :Gvdiffsplit main:%<cr>
 nnoremap <Leader>ga :G add -A<cr>
 nnoremap <Leader>gs :G status -sb<cr>
 nnoremap <Leader>gr :G rebase --continue<cr>
@@ -72,10 +72,10 @@ inoremap <Left> <nop>
 inoremap <Right> <nop>
 
 " format html on save
-augroup write_html
-	autocmd!
-	autocmd BufWritePre *.html :normal gg=G ``
-augroup END
+"augroup write_html
+"	autocmd!
+"	autocmd BufWritePre *.html :normal gg=G ``
+"augroup END
 
 " yaml format
 "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -309,9 +309,6 @@ endif
 " abbrev
 inoremap tgk #TG-romain-keen-eye-platform-
 iabbrev KE keen-eye-technologies.com
-
-au FileType go :iabbrev pln fmt.Println("
-au FileType go :iabbrev pfn fmt.Printf("
 
 " jk to <esc>
 inoremap jk <esc>
