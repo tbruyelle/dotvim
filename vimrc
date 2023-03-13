@@ -306,10 +306,6 @@ if has("patch-8.1.1904")
 	set completepopup=align:menu,border:off,highlight:Pmenu
 endif
 
-" abbrev
-inoremap tgk #TG-romain-keen-eye-platform-
-iabbrev KE keen-eye-technologies.com
-
 " jk to <esc>
 inoremap jk <esc>
 "iunmap jk
