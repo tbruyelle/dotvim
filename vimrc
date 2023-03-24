@@ -174,8 +174,8 @@ au FileType go nmap <leader>rf :GOVIMReferences<cr>
 au FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 "call govim#config#Set("ExperimentalProgressPopups", 1)
-call govim#config#Set("Gofumpt", 1)
-call govim#config#Set("GoImportsLocalPrefix", "github.com/ignite/cli")
+call govim#config#Set("Gofumpt", 0)
+call govim#config#Set("GoImportsLocalPrefix", "github.com/xxx")
 
 " \tt ask set a new build tag
 nnoremap <Leader>tt :call SetBuildTag()<cr>
@@ -310,4 +310,4 @@ endif
 inoremap jk <esc>
 "iunmap jk
 "inoremap <esc> <nop>
-
+abbreviate coalb Co-authored-by: Albert Le Batteux <contact@albttx.tech>
