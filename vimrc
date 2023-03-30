@@ -33,11 +33,22 @@ nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
 " git
+function! GitDefaultBranch()
+	return trim(system("git rev-parse --abbrev-ref origin/HEAD|cut -c8-"))
+endfunction
+function! GitDiff()
+	execute "Gdiff ".GitDefaultBranch()."...HEAD" 
+endfunction
+function! GitDiffSplit()
+	execute "Gvdiffsplit ".GitDefaultBranch()."...HEAD:%"
+endfunction
 nnoremap <Leader>g :G<cr>
 nnoremap <Leader>gc :G commit -a<cr>
 nnoremap <Leader>gp :G push -u<cr>
-nnoremap <Leader>gd :Gdiff main<cr>
-nnoremap <Leader>gg :Gvdiffsplit main:%<cr>
+"nnoremap <Leader>gd :Gdiff DefaultBranch()<cr>
+nnoremap <Leader>gd :call GitDiff()<cr>
+"nnoremap <Leader>gg :Gvdiffsplit main:%<cr>
+nnoremap <Leader>gg :call GitDiffSplit()<cr>
 nnoremap <Leader>ga :G add -A<cr>
 nnoremap <Leader>gs :G status -sb<cr>
 nnoremap <Leader>gr :G rebase --continue<cr>
