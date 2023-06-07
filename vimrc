@@ -53,6 +53,7 @@ nnoremap <Leader>ga :G add -A<cr>
 nnoremap <Leader>gs :G status -sb<cr>
 nnoremap <Leader>gr :G rebase --continue<cr>
 nnoremap <Leader>gb :GBranches --locals<cr>
+nnoremap <Leader>gm :G blame<cr>
 " Gbranches sort by date
 let g:fzf_checkout_git_options = '--sort=-committerdate'
 
@@ -186,7 +187,7 @@ au FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 "call govim#config#Set("ExperimentalProgressPopups", 1)
 call govim#config#Set("Gofumpt", 1)
-call govim#config#Set("GoImportsLocalPrefix", "github.com/xxx")
+call govim#config#Set("GoImportsLocalPrefix", "github.com/gnolang/gno")
 
 " \tt ask set a new build tag
 nnoremap <Leader>tt :call SetBuildTag()<cr>
@@ -322,3 +323,4 @@ inoremap jk <esc>
 "iunmap jk
 "inoremap <esc> <nop>
 abbreviate coalb Co-authored-by: Albert Le Batteux <contact@albttx.tech>
+abbreviate cogui Co-authored-by: Giuseppe Natale <giuseppe.natale@tendermint.com>
