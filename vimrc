@@ -27,6 +27,7 @@ let g:rehash256 = 1
 let g:molokai_original = 1
 colorscheme molokai
 set colorcolumn=80
+"set term=kitty
 
 " edit vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
@@ -187,7 +188,7 @@ au FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 "call govim#config#Set("ExperimentalProgressPopups", 1)
 call govim#config#Set("Gofumpt", 1)
-call govim#config#Set("GoImportsLocalPrefix", "github.com/gnolang/gno")
+call govim#config#Set("GoImportsLocalPrefix", "github.com/cosmos/cosmos-sdk,cosmossdk.io,github.com/gnolang/gno")
 
 " \tt ask set a new build tag
 nnoremap <Leader>tt :call SetBuildTag()<cr>
