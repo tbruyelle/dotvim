@@ -188,7 +188,7 @@ au FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 "call govim#config#Set("ExperimentalProgressPopups", 1)
 call govim#config#Set("Gofumpt", 1)
-call govim#config#Set("GoImportsLocalPrefix", "github.com/cosmos/cosmos-sdk,cosmossdk.io,github.com/gnolang/gno")
+call govim#config#Set("GoImportsLocalPrefix", "github.com/cosmos/cosmos-sdk,cosmossdk.io,github.com/gnolang/gno,github.com/cosmos/interchain-security,github.com/cometbft/cometbft")
 
 " \tt ask set a new build tag
 nnoremap <Leader>tt :call SetBuildTag()<cr>
