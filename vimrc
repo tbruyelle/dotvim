@@ -57,6 +57,27 @@ nnoremap <Leader>gb :GBranches --locals<cr>
 nnoremap <Leader>gm :G blame<cr>
 " Gbranches sort by date
 let g:fzf_checkout_git_options = '--sort=-committerdate'
+" \qq feed the qf with conflicted files
+nnoremap <Leader>qq :call ConflictToQF()<cr>
+function ConflictToQF()
+	let files = system("git diff --name-only --diff-filter=U")
+	if files == ""
+		echo "no conflits detected"
+		return
+	endif
+	let qf = []
+	for file in split(files, "\n")
+		" try to get the conflict line number
+		let line = system("grep -n '<<<' ".file." | cut -f1 -d:")
+		" append to qf list
+		call add(qf,{'filename':file, 'lnum':line})
+	endfor
+	"echo qf
+	call setqflist(qf)
+	execute "copen"
+	execute "cc"
+endfunction
+
 
 " Fuzzy finder
 nnoremap <C-p> :FZF<cr>
@@ -243,27 +264,6 @@ function BufferQF()
 	execute "copen"
 	execute "normal /" . name . ""
 	execute "cr " . line(".")
-endfunction
-
-" \qq feed the qf with conflicted files
-nnoremap <Leader>qq :call ConflictToQF()<cr>
-function ConflictToQF()
-	let files = system("git diff --name-only --diff-filter=U")
-	if files == ""
-		echo "no conflits detected"
-		return
-	endif
-	let qf = []
-	for file in split(files, "\n")
-		" try to get the conflict line number
-		let line = system("grep -n '<<<' ".file." | cut -f1 -d:")
-		" append to qf list
-		call add(qf,{'filename':file, 'lnum':line})
-	endfor
-	"echo qf
-	call setqflist(qf)
-	execute "copen"
-	execute "cc"
 endfunction
 
 nnoremap <C-\> 0wi//<space><esc>j
