@@ -33,6 +33,9 @@ set colorcolumn=80
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
+" toggle zen mode
+nnoremap <Leader>z :Goyo<cr>
+
 " git
 function! GitDefaultBranch()
 	return trim(system("git rev-parse --abbrev-ref origin/HEAD|cut -c8-"))
