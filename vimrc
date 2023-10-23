@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'govim/govim'
 Plug 'junegunn/fzf.vim'
-Plug 'jjo/vim-cue'
+Plug 'prabirshrestha/vim-lsp'
 "Plugin 'stamblerre/gocode', {'rtp': 'nvim/'} " I changed my gocode for supporting go modules.
 Plug 'ervandew/supertab'
 "Plug 'Townk/vim-autoclose'
@@ -230,15 +230,63 @@ catch
 endtry
 
 " Gno config
-function! GnoFmt()
-	cexpr system('gofumpt -e -w ' . expand('%'))
-	edit!
-endfunction
-command! GnoFmt call GnoFmt()
+"function! GnoFmt()
+"	cexpr system('gofumpt -e -w ' . expand('%'))
+"	edit!
+"endfunction
+"command! GnoFmt call GnoFmt()
 augroup gno_autocmd
 	autocmd!
-	autocmd BufNewFile,BufRead *.gno set filetype=go
-	autocmd BufWritePost *.gno GnoFmt
+	autocmd BufNewFile,BufRead *.gno {
+		set filetype=gno
+		set syntax=go
+	}
+"	autocmd BufWritePost *.gno GnoFmt
+augroup END
+" Gno LSP config
+if (executable('gnols'))
+	au User lsp_setup  call lsp#register_server({
+		\ 'name': 'gnols',
+		\ 'cmd': ['gnols'],
+		\ 'allowlist': ['gno'],
+		\ 'config': {},
+		\ 'workspace_config': {
+		\		'gno' : '/home/tom/go/bin/gno',
+    \   'precompileOnSave' : v:true,
+    \   'buildOnSave' : v:false,
+    \   'root' : '/home/tom/src/gno',
+		\ },
+		\ 'languageId': {server_info->'gno'},
+		\ })
+	let g:lsp_log_verbose = 1
+	let g:lsp_log_file = expand('~/log/vim-lsp.log')
+endif
+" register test command
+"function! s:gnols_test(context)
+"	"let l:command = get(a:context, 'command', {})
+"	echomsg context
+"endfunction
+"call lsp#register_command('gnols.test', function('s:gnols_test'))
+	
+function! s:on_lsp_buffer_enabled() abort
+	setlocal omnifunc=lsp#complete
+	setlocal signcolumn=yes
+	autocmd BufWritePre <buffer> LspDocumentFormatSync
+	nmap <buffer> gd <plug>(lsp-definition)
+	nmap <buffer> <leader>rr <plug>(lsp-rename)
+	nmap <buffer> <leader>i <Plug>(lsp-hover)
+	nmap <buffer> <leader>t :call s:gnols_test()<cr>
+endfunction
+function! s:gnols_test()
+	call lsp#ui#vim#execute_command#_execute({
+		\ 'command_name':'gnols.test',
+		\ 'command_args': [bufname(), 'Test'],
+		\ 'server_name':'gnols',
+	\ })
+endfunction
+augroup lsp_install
+	au!
+	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
 " Format go.plush files
