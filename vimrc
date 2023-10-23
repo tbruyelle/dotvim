@@ -18,6 +18,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'tarekbecker/vim-yaml-formatter'
 " Zen mode, turn on with :Goyo
 Plug 'junegunn/goyo.vim'
+Plug 'inkarkat/vim-SyntaxRange'
 call plug#end()
 
 " Colorscheme
@@ -29,6 +30,26 @@ colorscheme molokai
 set colorcolumn=80
 let g:markdown_fenced_languages = ['go', 'bash=sh', 'vim']
 "set term=kitty
+
+" txtar syntax hl
+function s:Highlight(...)
+  hi Mine ctermfg=236 ctermbg=150 guifg=#303030 guibg=#afd787
+  call SyntaxRange#IncludeEx('start="\%^" end="^\ze-- .* --$" containedin=ALL keepend', 'bash')
+  let files = [
+        \ [["markdown", "md"], "markdown"],
+        \ [["go"], "go"],
+        \ [["gno"], "go"],
+        \ [["mod"], "gomod"],
+        \ [["sh", "bash"], "bash"],
+        \]
+  for f in files
+    call SyntaxRange#IncludeEx('matchgroup=Mine start="^-- .*\.\('.join(f[0],'\|').'\)\(\.golden\)\? --$" end="^\ze-- .* --$" containedin=ALL keepend', f[1])
+  endfor
+  syn match Mine '^-- .* --$' containedin=ALL
+  setlocal commentstring=#%s
+endfunction
+
+autocmd BufNewFile,BufRead *.txtar call s:Highlight()
 
 " edit vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
