@@ -234,7 +234,7 @@ au FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 "call govim#config#Set("ExperimentalProgressPopups", 1)
 call govim#config#Set("Gofumpt", 1)
-call govim#config#Set("GoImportsLocalPrefix", "github.com/cosmos/cosmos-sdk,cosmossdk.io,github.com/gnolang/gno,github.com/cosmos/interchain-security,github.com/cometbft/cometbft")
+call govim#config#Set("GoImportsLocalPrefix", "github.com/cosmos/cosmos-sdk,cosmossdk.io,github.com/gnolang/gno,github.com/cosmos/interchain-security,github.com/cometbft/cometbft,github.com/cosmos/ibc-go")
 
 " \tt ask set a new build tag
 nnoremap <Leader>tt :call SetBuildTag()<cr>
@@ -252,18 +252,12 @@ catch
 endtry
 
 " Gno config
-"function! GnoFmt()
-"	cexpr system('gofumpt -e -w ' . expand('%'))
-"	edit!
-"endfunction
-"command! GnoFmt call GnoFmt()
 augroup gno_autocmd
 	autocmd!
 	autocmd BufNewFile,BufRead *.gno {
 		set filetype=gno
 		set syntax=go
 	}
-"	autocmd BufWritePost *.gno GnoFmt
 augroup END
 " Gno LSP config
 if (executable('gnols'))
