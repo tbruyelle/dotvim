@@ -6,7 +6,10 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'ervandew/supertab'
 "Plug 'Townk/vim-autoclose'
 Plug 'mileszs/ack.vim'
+" some colors
 Plug 'fatih/molokai'
+Plug 'joeytwiddle/vim-diff-traffic-lights-colors'
+Plug 'karoliskoncevicius/oldbook-vim'
 "Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
@@ -29,6 +32,10 @@ let g:molokai_original = 1
 colorscheme molokai
 set colorcolumn=80
 let g:markdown_fenced_languages = ['go', 'bash=sh', 'vim']
+if &diff
+	colorscheme traffic_lights_diff
+	"colorscheme oldbook
+endif
 "set term=kitty
 
 " txtar syntax hl
@@ -269,7 +276,7 @@ if (executable('gnols'))
 		\ 'workspace_config': {
 		\		'gno' : '/home/tom/go/bin/gno',
     \   'precompileOnSave' : v:true,
-    \   'buildOnSave' : v:false,
+    \   'buildOnSave' : v:true,
     \   'root' : '/home/tom/src/gno',
 		\ },
 		\ 'languageId': {server_info->'gno'},
