@@ -75,12 +75,13 @@ endfunction
 function! GitDiffSplit()
 	execute "Gvdiffsplit ".GitDefaultBranch()."...HEAD:%"
 endfunction
+function! GitConflicts()
+	execute "Gvdiffsplit!"
+endfunction
 nnoremap <Leader>g :G<cr>
-nnoremap <Leader>gc :G commit -a<cr>
 nnoremap <Leader>gp :G push -u<cr>
-"nnoremap <Leader>gd :Gdiff DefaultBranch()<cr>
 nnoremap <Leader>gd :call GitDiff()<cr>
-"nnoremap <Leader>gg :Gvdiffsplit main:%<cr>
+nnoremap <Leader>gq :call GitConflicts()<cr>
 nnoremap <Leader>gg :call GitDiffSplit()<cr>
 nnoremap <Leader>ga :G add -A<cr>
 nnoremap <Leader>gs :G status -sb<cr>
@@ -91,6 +92,7 @@ nnoremap <Leader>gm :G blame<cr>
 let g:fzf_checkout_git_options = '--sort=-committerdate'
 " \qq feed the qf with conflicted files
 nnoremap <Leader>qq :call ConflictToQF()<cr>
+nnoremap <Leader>gc :call ConflictToQF()<cr>
 function ConflictToQF()
 	let files = system("git diff --name-only --diff-filter=U")
 	if files == ""
