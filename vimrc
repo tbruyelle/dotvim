@@ -39,7 +39,7 @@ endif
 "set term=kitty
 
 " txtar syntax hl
-function s:Highlight(...)
+function s:TxTarHighlight(...)
   hi Mine ctermfg=236 ctermbg=150 guifg=#303030 guibg=#afd787
   call SyntaxRange#IncludeEx('start="\%^" end="^\ze-- .* --$" containedin=ALL keepend', 'bash')
   let files = [
@@ -51,12 +51,65 @@ function s:Highlight(...)
         \]
   for f in files
     call SyntaxRange#IncludeEx('matchgroup=Mine start="^-- .*\.\('.join(f[0],'\|').'\)\(\.golden\)\? --$" end="^\ze-- .* --$" containedin=ALL keepend', f[1])
+
   endfor
   syn match Mine '^-- .* --$' containedin=ALL
   setlocal commentstring=#%s
 endfunction
 
-autocmd BufNewFile,BufRead *.txtar call s:Highlight()
+function s:TxTarGoFmt()
+	" Save the current cursor position
+	let save_cursor = getpos('.')
+	normal gg
+
+	let start_pattern = '^-- \S\+\.\(go\|gno\)'
+	let end_pattern = '^-- '
+	let start_line=1
+
+	while start_line != 0 
+		" Search for start pattern and get the line number
+		let start_line = search(start_pattern, 'W')
+		if start_line != 0
+			" Search for end pattern after the start line and get the line number
+			let end_line = search(end_pattern, 'Wn')
+			if end_line == 0
+				" if no match, use the last line, it's probably the last file
+				let end_line = line('$')
+			else
+				let end_line=end_line-1
+			endif
+			call GoFmtSelectedLines(start_line+1, end_line)
+		endif
+	endwhile
+	
+	" Restore the cursor position
+  call setpos('.', save_cursor)
+endfunction
+
+augroup txtar_autocmd
+	autocmd!
+	autocmd BufNewFile,BufRead *.txtar call s:TxTarHighlight()
+	autocmd BufWritePre *.txtar call s:TxTarGoFmt()
+augroup END
+
+function! GoFmtSelectedLines(start_line, end_line)
+    let l:content = getline(a:start_line, a:end_line)
+
+    " Write content to a temporary file
+    let l:tempfile = tempname()
+    call writefile(l:content, l:tempfile)
+
+    " Run gofmt on the temporary file
+    let l:formatted_content = system('gofmt ' . l:tempfile)
+
+    " Replace original content with formatted content
+    call setline(a:start_line, split(l:formatted_content, "\n"))
+
+    " Clean up the temporary file
+    call delete(l:tempfile)
+endfunction
+command! -range=% GoFmtSelectedLines call GoFmtSelectedLines(<line1>, <line2>)
+
 
 " edit vimrc
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
