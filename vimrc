@@ -86,12 +86,6 @@ function s:TxTarGoFmt()
   call setpos('.', save_cursor)
 endfunction
 
-augroup txtar_autocmd
-	autocmd!
-	autocmd BufNewFile,BufRead *.txtar call s:TxTarHighlight()
-	autocmd BufWritePre *.txtar call s:TxTarGoFmt()
-augroup END
-
 function! GoFmtSelectedLines(start_line, end_line)
     let l:content = getline(a:start_line, a:end_line)
 
@@ -109,6 +103,12 @@ function! GoFmtSelectedLines(start_line, end_line)
     call delete(l:tempfile)
 endfunction
 command! -range=% GoFmtSelectedLines call GoFmtSelectedLines(<line1>, <line2>)
+
+augroup txtar_autocmd
+	autocmd!
+	autocmd BufNewFile,BufRead *.txtar call s:TxTarHighlight()
+	autocmd BufWritePre *.txtar call s:TxTarGoFmt()
+augroup END
 
 
 " edit vimrc
