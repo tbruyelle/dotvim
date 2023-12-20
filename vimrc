@@ -316,10 +316,9 @@ endtry
 " Gno config
 augroup gno_autocmd
 	autocmd!
-	autocmd BufNewFile,BufRead *.gno {
-		set filetype=gno
-		set syntax=go
-	}
+	autocmd BufNewFile,BufRead *.gno
+		\ set filetype=gno |
+		\ set syntax=go
 augroup END
 " Gno LSP config
 if (executable('gnols'))
