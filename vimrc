@@ -78,7 +78,7 @@ function s:TxTarGoFmt()
 			else
 				let end_line=end_line-1
 			endif
-			call GoFmtSelectedLines(start_line+1, end_line)
+			call GoFmtLines(start_line+1, end_line)
 		endif
 	endwhile
 	
@@ -86,7 +86,7 @@ function s:TxTarGoFmt()
   call setpos('.', save_cursor)
 endfunction
 
-function! GoFmtSelectedLines(start_line, end_line)
+function! GoFmtLines(start_line, end_line)
     let l:content = getline(a:start_line, a:end_line)
 
     " Write content to a temporary file
@@ -102,7 +102,7 @@ function! GoFmtSelectedLines(start_line, end_line)
     " Clean up the temporary file
     call delete(l:tempfile)
 endfunction
-command! -range=% GoFmtSelectedLines call GoFmtSelectedLines(<line1>, <line2>)
+command! -range=% GoFmtSelectedLines call GoFmtLines(<line1>, <line2>)
 
 augroup txtar_autocmd
 	autocmd!
