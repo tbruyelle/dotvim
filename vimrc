@@ -119,6 +119,10 @@ nnoremap <Leader>sv :source $MYVIMRC<cr>
 nnoremap <Leader>z :Goyo<cr>
 
 " git
+function! GitCommitTag()
+	let l:sha1 = expand("<cword>")
+  echo system('git name-rev --tags ' . l:sha1)
+endfunction
 function! GitDefaultBranch()
 	return trim(system("git rev-parse --abbrev-ref origin/HEAD|cut -c8-"))
 endfunction
@@ -141,6 +145,7 @@ nnoremap <Leader>gs :G status -sb<cr>
 nnoremap <Leader>gr :G rebase --continue<cr>
 nnoremap <Leader>gb :GBranches --locals<cr>
 nnoremap <Leader>gm :G blame<cr>
+nnoremap <Leader>gt :call GitCommitTag()<cr>
 " Gbranches sort by date
 let g:fzf_checkout_git_options = '--sort=-committerdate'
 " \qq feed the qf with conflicted files
@@ -453,3 +458,16 @@ inoremap jk <esc>
 "inoremap <esc> <nop>
 abbreviate coalb Co-authored-by: Albert Le Batteux <contact@albttx.tech>
 abbreviate cogui Co-authored-by: Giuseppe Natale <giuseppe.natale@tendermint.com>
+
+function! GetSelectedText()
+	" Why is this not a built-in Vim script function?!
+	let [line_start, column_start] = getpos("'<")[1:2]
+	let [line_end, column_end] = getpos("'>")[1:2]
+	let lines = getline(line_start, line_end)
+	if len(lines) == 0
+	    return ''
+	endif
+	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+	let lines[0] = lines[0][column_start - 1:]
+	return join(lines, "\n")
+endfunction
