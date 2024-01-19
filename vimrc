@@ -335,7 +335,7 @@ if (executable('gnols'))
 		\ 'workspace_config': {
 		\		'gno' : '/home/tom/go/bin/gno',
     \   'precompileOnSave' : v:true,
-    \   'buildOnSave' : v:true,
+    \   'buildOnSave' : v:false,
     \   'root' : '/home/tom/src/gno',
 		\ },
 		\ 'languageId': {server_info->'gno'},
@@ -353,7 +353,7 @@ endif
 function! s:on_lsp_buffer_enabled() abort
 	setlocal omnifunc=lsp#complete
 	setlocal signcolumn=yes
-	autocmd BufWritePre <buffer> LspDocumentFormatSync
+	autocmd! BufWritePre *.gno LspDocumentFormatSync
 	nmap <buffer> gd <plug>(lsp-definition)
 	nmap <buffer> <leader>rr <plug>(lsp-rename)
 	nmap <buffer> <leader>i <Plug>(lsp-hover)
