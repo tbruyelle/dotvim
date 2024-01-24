@@ -335,7 +335,7 @@ if (executable('gnols'))
 		\ 'workspace_config': {
 		\		'gno' : '/home/tom/go/bin/gno',
     \   'precompileOnSave' : v:true,
-    \   'buildOnSave' : v:false,
+    \   'buildOnSave' : v:true,
     \   'root' : '/home/tom/src/gno',
 		\ },
 		\ 'languageId': {server_info->'gno'},
