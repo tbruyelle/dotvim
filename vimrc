@@ -334,6 +334,7 @@ if (executable('gnols'))
 		\ 'config': {},
 		\ 'workspace_config': {
 		\		'gno' : '/home/tom/go/bin/gno',
+		\		'gopls' : '/home/tom/go/bin/gopls',
     \   'precompileOnSave' : v:true,
     \   'buildOnSave' : v:true,
     \   'root' : '/home/tom/src/gno',
