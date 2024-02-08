@@ -95,9 +95,10 @@ function! GoFmtLines(start_line, end_line)
 
     " Run gofmt on the temporary file
     let l:formatted_content = system('gofmt ' . l:tempfile)
-
-    " Replace original content with formatted content
-    call setline(a:start_line, split(l:formatted_content, "\n"))
+		if v:shell_error == 0
+			" Replace original content with formatted content
+			call setline(a:start_line, split(l:formatted_content, "\n"))
+		endif
 
     " Clean up the temporary file
     call delete(l:tempfile)
