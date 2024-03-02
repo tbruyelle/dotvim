@@ -38,6 +38,9 @@ if &diff
 endif
 "set term=kitty
 
+" json tab format
+autocmd Filetype json setlocal tabstop=2 shiftwidth=2 expandtab
+
 " txtar syntax hl
 function s:TxTarHighlight(...)
   hi Mine ctermfg=236 ctermbg=150 guifg=#303030 guibg=#afd787
