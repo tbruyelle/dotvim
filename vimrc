@@ -361,6 +361,7 @@ function! s:on_lsp_buffer_enabled() abort
 	autocmd! BufWritePre *.gno LspDocumentFormatSync
 	nmap <buffer> gd <plug>(lsp-definition)
 	nmap <buffer> <leader>rr <plug>(lsp-rename)
+	nmap <buffer> <leader>rf <plug>(lsp-references)
 	nmap <buffer> <leader>i <Plug>(lsp-hover)
 	nmap <buffer> <leader>t :call s:gnols_test()<cr>
 endfunction
