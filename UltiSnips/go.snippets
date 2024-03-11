@@ -430,12 +430,27 @@ func Test${1:Function}(t *testing.T) {
 }
 endsnippet
 
-# test function
-snippet testa "func TestXYZ(t *testing.T) { assert... }"
+# parameteized test function 
+snippet testp "func TestXYZ(t *testing.T) { for { ... } }"
 func Test${1:Function}(t *testing.T) {
-	require := require.New(t)
-	assert := assert.New(t)
+	tests := []struct{
+		name string
 	${0:${VISUAL}}
+	}{
+		{
+			name:"ok",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			require := require.New(t)
+			assert := assert.New(t)
+
+			err := $1()
+
+			require.NoError(err)
+		})
+	}
 }
 endsnippet
 
