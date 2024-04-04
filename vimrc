@@ -51,6 +51,7 @@ function s:TxTarHighlight(...)
         \ [["gno"], "go"],
         \ [["mod"], "gomod"],
         \ [["sh", "bash"], "bash"],
+        \ [["json"], "json"],
         \]
   for f in files
     call SyntaxRange#IncludeEx('matchgroup=Mine start="^-- .*\.\('.join(f[0],'\|').'\)\(\.golden\)\? --$" end="^\ze-- .* --$" containedin=ALL keepend', f[1])
@@ -361,6 +362,7 @@ function! s:on_lsp_buffer_enabled() abort
 	autocmd! BufWritePre *.gno LspDocumentFormatSync
 	nmap <buffer> gd <plug>(lsp-definition)
 	nmap <buffer> <leader>rr <plug>(lsp-rename)
+	nmap <buffer> <leader>ri <plug>(lsp-implementation)
 	nmap <buffer> <leader>rf <plug>(lsp-references)
 	nmap <buffer> <leader>i <Plug>(lsp-hover)
 	nmap <buffer> <leader>t :call s:gnols_test()<cr>
