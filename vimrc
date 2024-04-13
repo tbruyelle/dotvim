@@ -346,6 +346,7 @@ if (executable('gnols'))
 		\ },
 		\ 'languageId': {server_info->'gno'},
 		\ })
+	let g:lsp_show_workspace_edits = 1
 	let g:lsp_log_verbose = 1
 	let g:lsp_log_file = expand('~/log/vim-lsp.log')
 endif
@@ -361,9 +362,9 @@ function! s:on_lsp_buffer_enabled() abort
 	setlocal signcolumn=yes
 	autocmd! BufWritePre *.gno LspDocumentFormatSync
 	nmap <buffer> gd <plug>(lsp-definition)
-	nmap <buffer> <leader>rr <plug>(lsp-rename)
-	nmap <buffer> <leader>ri <plug>(lsp-implementation)
-	nmap <buffer> <leader>rf <plug>(lsp-references)
+	nmap <buffer> <leader>rr <Plug>(lsp-rename)
+	nmap <buffer> <leader>ri <Plug>(lsp-implementation)
+	nmap <buffer> <leader>rf <Plug>(lsp-references)
 	nmap <buffer> <leader>i <Plug>(lsp-hover)
 	nmap <buffer> <leader>t :call s:gnols_test()<cr>
 endfunction
