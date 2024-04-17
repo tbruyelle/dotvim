@@ -22,6 +22,7 @@ Plug 'tarekbecker/vim-yaml-formatter'
 " Zen mode, turn on with :Goyo
 Plug 'junegunn/goyo.vim'
 Plug 'inkarkat/vim-SyntaxRange'
+Plug 'thinca/vim-themis'
 call plug#end()
 
 " Colorscheme
