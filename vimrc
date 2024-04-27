@@ -193,6 +193,17 @@ nnoremap <Leader>d :e %:p:h<CR>
 " quick buffer switch
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
 
+" upper case word
+imap <c-u> <esc>viwU<esc>i
+nnoremap <c-u> viwU
+
+" delete line in insert mode
+inoremap <c-d> <esc>ddi
+
+" quote word
+nnoremap <leader>" viw<esc><esc>a"<esc>bi"<esc>lel
+nnoremap <leader>' viw<esc><esc>a'<esc>bi'<esc>lel
+
 " force use hjkl
 nnoremap <Up> <nop>
 nnoremap <Down> <nop>
