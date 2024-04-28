@@ -194,11 +194,16 @@ nnoremap <Leader>d :e %:p:h<CR>
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
 
 " upper case word
-imap <c-u> <esc>viwU<esc>i
-nnoremap <c-u> viwU
+inoremap <c-u> <esc>viwU<esc>i
+"nnoremap <c-u> viwU
 
 " delete line in insert mode
 inoremap <c-d> <esc>ddi
+
+" operator first parenthesis
+onoremap if( :<c-u>normal! 0f(vi(<cr>
+" operator last parenthesis
+onoremap il( :<c-u>normal! $F)vi(<cr>
 
 " quote word
 nnoremap <leader>" viw<esc><esc>a"<esc>bi"<esc>lel
@@ -420,9 +425,9 @@ function BufferQF()
 	execute "cr " . line(".")
 endfunction
 
-nnoremap <C-\> 0wi//<space><esc>j
+"nnoremap <C-\> 0i//<space><esc>j
 vnoremap <C-\> 0I//<space><esc>
-"nnoremap <expr> <C-\> stridx(getline(.), '//')==-1 ? '<C-]>' : '<C-[>'
+nnoremap <expr> <C-\> stridx(getline('.'), '//')==-1 ? '0I//<space><esc>j' : '0/\/\/<cr>xxj'
 
 " C-r ask input for  a replacement of selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
