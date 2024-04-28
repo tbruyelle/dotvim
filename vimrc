@@ -44,7 +44,7 @@ autocmd Filetype json setlocal tabstop=2 shiftwidth=2 expandtab
 
 " txtar syntax hl
 function s:TxTarHighlight(...)
-  hi Mine ctermfg=236 ctermbg=150 guifg=#303030 guibg=#afd787
+  highlight Mine ctermfg=236 ctermbg=150 guifg=#303030 guibg=#afd787
   call SyntaxRange#IncludeEx('start="\%^" end="^\ze-- .* --$" containedin=ALL keepend', 'bash')
   let files = [
         \ [["markdown", "md"], "markdown"],
@@ -58,7 +58,7 @@ function s:TxTarHighlight(...)
     call SyntaxRange#IncludeEx('matchgroup=Mine start="^-- .*\.\('.join(f[0],'\|').'\)\(\.golden\)\? --$" end="^\ze-- .* --$" containedin=ALL keepend', f[1])
 
   endfor
-  syn match Mine '^-- .* --$' containedin=ALL
+  syntax match Mine '^-- .* --$' containedin=ALL
   setlocal commentstring=#%s
 endfunction
 
@@ -229,13 +229,13 @@ inoremap <Right> <nop>
 "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " highlight line and column
-hi CursorLine   cterm=NONE ctermbg=black  guibg=black
-hi CursorColumn cterm=NONE ctermbg=black  guibg=black
+highlight CursorLine   cterm=NONE ctermbg=black  guibg=black
+highlight CursorColumn cterm=NONE ctermbg=black  guibg=black
 nnoremap <Leader>x :set cursorline! cursorcolumn!<CR>
 
 "cnext/cprevious mapping on location
-map <C-Left> :bp<CR>
-map <C-Right> :bn<CR>
+map <C-Left> :bprevious<CR>
+map <C-Right> :bnext<CR>
 "cnext/cprevious mapping on location
 map <C-Down> :lnext<CR>
 map <C-Up> :lprevious<CR>
@@ -258,13 +258,13 @@ set noswapfile
 "always show statusline
 set laststatus=2
 " Format the status line
-set stl=[%n]\ %t%m%r%h\ %w%y%<\ \ Cwd:%r%{getcwd()}%h\ \ %=\ Enc:%{strlen(&fenc)?&fenc:'none'},%{&ff}\ \ Line:%l\,%c\/%L\ \[%P\]\ %o
+set statusline=[%n]\ %t%m%r%h\ %w%y%<\ \ Cwd:%r%{getcwd()}%h\ \ %=\ Enc:%{strlen(&fenc)?&fenc:'none'},%{&ff}\ \ Line:%l\,%c\/%L\ \[%P\]\ %o
 
 " enable mouse
 set mouse=a
 
 " 7 characters limit when j/k
-set so=7
+set scrolloff=7
 
 set relativenumber
 set number
@@ -272,13 +272,13 @@ set number
 
 filetype plugin indent on
 
-au BufRead,BufNewFile *.vugu set filetype=html
+autocmd BufRead,BufNewFile *.vugu set filetype=html
 
 " Markdown config
-au BufRead,BufNewFile *.md set filetype=markdown
-au FileType markdown setl tw=79
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd FileType markdown setlocal tw=79
 
-au BufRead,BufNewFile mail setl tw=72
+autocmd BufRead,BufNewFile mail setlocal tw=72
 
 " Bubble single lines
 "nmap <C-K> ddkP
@@ -311,15 +311,15 @@ let g:SuperTabDefaultCompletionType = "context"
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
 "au FileType go nmap <Leader>gd <Plug>(go-doc)
 "au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap gd <Plug>(go-def-split)
+autocmd FileType go nmap gd <Plug>(go-def-split)
 "go commands
-au FileType go nmap <leader>i :call GOVIMHover()<cr>
-au FileType go nmap <leader>rr :GOVIMRename<cr>
-au FileType go nmap <leader>c :GOVIMQuickfixDiagnostics<cr>
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>I <Plug>(go-install)
-au FileType go nmap <leader>rf :GOVIMReferences<cr>
-au FileType go nmap <leader>ri :GOVIMImplements<cr>
+autocmd FileType go nmap <leader>i :call GOVIMHover()<cr>
+autocmd FileType go nmap <leader>rr :GOVIMRename<cr>
+autocmd FileType go nmap <leader>c :GOVIMQuickfixDiagnostics<cr>
+autocmd FileType go nmap <leader>t <Plug>(go-test)
+autocmd FileType go nmap <leader>I <Plug>(go-install)
+autocmd FileType go nmap <leader>rf :GOVIMReferences<cr>
+autocmd FileType go nmap <leader>ri :GOVIMImplements<cr>
 "au FileType go nmap <leader>r <Plug>(go-referrers)
 "call govim#config#Set("ExperimentalProgressPopups", 1)
 call govim#config#Set("Gofumpt", 1)
@@ -349,7 +349,7 @@ augroup gno_autocmd
 augroup END
 " Gno LSP config
 if (executable('gnols'))
-	au User lsp_setup  call lsp#register_server({
+	autocmd User lsp_setup  call lsp#register_server({
 		\ 'name': 'gnols',
 		\ 'cmd': ['gnols'],
 		\ 'allowlist': ['gno'],
@@ -393,7 +393,7 @@ function! s:gnols_test()
 	\ })
 endfunction
 augroup lsp_install
-	au!
+	autocmd!
 	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
