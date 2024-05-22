@@ -277,6 +277,8 @@ autocmd BufRead,BufNewFile *.vugu set filetype=html
 " Markdown config
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType markdown setlocal tw=79
+autocmd FileType markdown nnoremap BB ciw**<esc>pa**<esc>
+autocmd FileType markdown vnoremap BB c**<esc>pa**<esc>
 
 autocmd BufRead,BufNewFile mail setlocal tw=72
 
