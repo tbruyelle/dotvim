@@ -251,6 +251,9 @@ noremap <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 " show filepath
 nnoremap <leader>f :echo @%<CR>
+" enquote mapping
+nnoremap "" ciw"<esc>pa",<esc>
+vnoremap "" c"<esc>pa",<esc>
 
 set tabstop=2
 set softtabstop=2
