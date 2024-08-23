@@ -13,6 +13,7 @@ Plug 'karoliskoncevicius/oldbook-vim'
 "Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 " GDiff {rev} for code review
 Plug 'oguzbilgic/vim-gdiff'
 " fzf for checkout git branches
@@ -152,6 +153,7 @@ nnoremap <Leader>gr :G rebase --continue<cr>
 nnoremap <Leader>gb :GBranches --locals<cr>
 nnoremap <Leader>gm :G blame<cr>
 nnoremap <Leader>gt :call GitCommitTag()<cr>
+nnoremap <Leader>gh :GBrowse<cr>
 " Gbranches sort by date
 let g:fzf_checkout_git_options = '--sort=-committerdate'
 " \qq feed the qf with conflicted files
