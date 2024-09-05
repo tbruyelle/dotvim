@@ -186,7 +186,10 @@ nnoremap <C-g> :GFiles?<cr>
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 
 " ag search
-nnoremap <Leader>s :Ack 
+nnoremap <Leader>s :Ack --ignore={'*.pb.go','*.pulsar.go','*_test.go'}
+"ack setup, replace with ag
+let g:ackprg = 'ag --vimgrep'
+
 
 " goto file edits file
 nnoremap gf :e <cfile><CR>
@@ -305,9 +308,6 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
-"ack setup, replace with ag
-let g:ackprg = 'ag --vimgrep'
 
 " supertab use gocode
 let g:SuperTabDefaultCompletionType = "context"
