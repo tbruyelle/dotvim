@@ -189,6 +189,7 @@ let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 nnoremap <Leader>s :Ack --ignore={'*.pb.go','*.pulsar.go','*_test.go'} 
 "ack setup, replace with ag
 let g:ackprg = 'ag --vimgrep'
+let g:ackhighlight = 1
 
 
 " goto file edits file
