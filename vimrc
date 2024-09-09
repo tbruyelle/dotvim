@@ -190,6 +190,19 @@ nnoremap <Leader>s :Ack --ignore={'*.pb.go','*.pulsar.go','*_test.go'}
 "ack setup, replace with ag
 let g:ackprg = 'ag --vimgrep'
 let g:ackhighlight = 1
+" FilterQF removes protobuf and test go files from QF list
+nnoremap <Leader>qf :call FilterQF()<cr>
+function FilterQF()
+	let qf = []
+	for f in getqflist()
+		let n = bufname(f.bufnr)
+		if n =~ '\.pb\.go$' || n =~ '\.pulsar\.go$' || n =~ '_test\.go'
+			continue
+		endif
+		call add(qf, f)
+	endfor
+	call setqflist(qf)
+endfunction
 
 
 " goto file edits file
