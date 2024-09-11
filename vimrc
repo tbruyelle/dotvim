@@ -444,9 +444,16 @@ augroup END
 nnoremap <Leader>cc :call BufferQF()<cr>
 function BufferQF()
 	let name = escape(bufname(), "/")
-	execute "copen"
-	execute "normal /" . name . ""
-	execute "cr " . line(".")
+	let wid = win_getid()
+	execute "copen 10"
+	let line = search(name)
+	if line > 0
+		call cursor(line, 1)
+		execute "cr " . line(".")
+	else
+		echo "No error in current buffer"
+		call win_gotoid(wid)
+	endif
 endfunction
 
 "nnoremap <C-\> 0i//<space><esc>j
