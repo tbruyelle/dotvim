@@ -186,7 +186,8 @@ nnoremap <C-g> :GFiles?<cr>
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
 
 " ag search
-nnoremap <Leader>s :Ack --ignore={'*.pb.go','*.pb.gw.go','*.pulsar.go','*_test.go'} 
+nnoremap <Leader>s :Ack 
+"nnoremap <Leader>s :Ack --ignore={'*.pb.go','*.pb.gw.go','*.pulsar.go','*_test.go'} 
 "ack setup, replace with ag
 let g:ackprg = 'ag --vimgrep'
 let g:ackhighlight = 1
