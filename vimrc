@@ -197,7 +197,7 @@ function FilterQF()
 	let qf = []
 	for f in getqflist()
 		let n = bufname(f.bufnr)
-		if n =~ '\.pb\.go$' || n =~ '\.pb\.gw\.go$' || n =~ '\.pulsar\.go$' || n =~ '_test\.go'
+		if n =~ '\.pb\.go$' || n =~ '\.pb\.gw\.go$' || n =~ '\.pulsar\.go$' || n =~ '_test\.go' || n =~ 'testutil'
 			continue
 		endif
 		if f.text =~ 'is deprecated'
