@@ -24,6 +24,7 @@ Plug 'tarekbecker/vim-yaml-formatter'
 Plug 'junegunn/goyo.vim'
 Plug 'inkarkat/vim-SyntaxRange'
 Plug 'thinca/vim-themis'
+Plug 'will133/vim-dirdiff'
 call plug#end()
 
 " Colorscheme
