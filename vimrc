@@ -193,9 +193,9 @@ nnoremap <Leader>s :Ack
 "ack setup, replace with ag
 let g:ackprg = 'ag --vimgrep'
 let g:ackhighlight = 1
-" FilterQF removes protobuf and test go files from QF list
-nnoremap <Leader>qf :call FilterQF()<cr>
-function FilterQF()
+" QFDiet removes protobuf and test go files from QF list
+nnoremap <Leader>qf :call QFDiet()<cr>
+function QFDiet()
 	let qf = []
 	for f in getqflist()
 		let n = bufname(f.bufnr)
@@ -203,6 +203,38 @@ function FilterQF()
 			continue
 		endif
 		if f.text =~ 'is deprecated'
+			continue
+		endif
+		call add(qf, f)
+	endfor
+	call setqflist(qf)
+endfunction
+" QFRmFile removes current file selected from the QF list
+nnoremap <Leader>qr :call QFRmFile()<cr>
+function QFRmFile()
+	let currentIdx = getqflist({'idx':0}).idx
+	let currentBufnr = getqflist({'idx':currentIdx,'items':0}).items[0].bufnr
+	let qf = []
+	for f in getqflist()
+		if currentBufnr == f.bufnr
+			" Skip same bufnr
+			continue
+		endif
+		call add(qf, f)
+	endfor
+	call setqflist(qf)
+endfunction
+" QFRmDir removes current dir selected from the QF list
+nnoremap <Leader>qd :call QFRmDir()<cr>
+function QFRmDir()
+	let currentIdx = getqflist({'idx':0}).idx
+	let currentBufnr = getqflist({'idx':currentIdx,'items':0}).items[0].bufnr
+	let currentDir = expand('#'.currentBufnr.':h')
+	let qf = []
+	for f in getqflist()
+		let dir = expand('#'.f.bufnr.':h')
+		if currentDir == dir
+			" Skip same dir
 			continue
 		endif
 		call add(qf, f)
