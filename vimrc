@@ -282,6 +282,12 @@ inoremap <Right> <nop>
 "	autocmd BufWritePre *.html :normal gg=G ``
 "augroup END
 
+" xml format
+function FormatXML()
+	set equalprg=xmllint\ --format\ -
+	normal gg=G
+endfunction
+
 " yaml format
 "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
