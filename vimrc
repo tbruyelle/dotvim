@@ -293,6 +293,12 @@ function FormatJSON()
 	execute '%!jq .'
 endfunction
 
+" python format
+function FormatPY()
+	" pip install git+https://github.com/psf/black
+	execute '%!python -m black -q -'
+endfunction
+
 " yaml format
 "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
