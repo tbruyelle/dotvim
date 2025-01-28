@@ -288,6 +288,11 @@ function FormatXML()
 	normal gg=G
 endfunction
 
+" json format
+function FormatJSON()
+	execute '%!jq .'
+endfunction
+
 " yaml format
 "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
