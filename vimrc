@@ -298,6 +298,10 @@ function FormatPY()
 	" pip install git+https://github.com/psf/black
 	execute '%!python -m black -q -'
 endfunction
+augroup write_py
+	autocmd!
+	autocmd BufWritePre *.py call FormatPY()
+augroup END
 
 " yaml format
 "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
