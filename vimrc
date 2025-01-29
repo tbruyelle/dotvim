@@ -303,6 +303,18 @@ augroup write_py
 	autocmd BufWritePre *.py call FormatPY()
 augroup END
 
+" proto format
+function FormatProto()
+	let save_cursor = getpos('.')
+	execute '%!clang-format'
+	" Restore the cursor position
+  call setpos('.', save_cursor)
+endfunction
+augroup write_proto
+	autocmd!
+	autocmd BufWritePre *.proto call FormatProto()
+augroup END
+
 " yaml format
 "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
