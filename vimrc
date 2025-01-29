@@ -306,7 +306,8 @@ augroup END
 " proto format
 function FormatProto()
 	let save_cursor = getpos('.')
-	execute '%!clang-format'
+	let filename = expand('%:t')
+	execute '%!clang-format --assume-filename '.filename
 	" Restore the cursor position
   call setpos('.', save_cursor)
 endfunction
