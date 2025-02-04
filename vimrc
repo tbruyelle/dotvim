@@ -29,6 +29,7 @@ Plug 'gergap/vim-ollama'
 call plug#end()
 
 " ollama
+let g:ollama_enabled = 0
 "let g:ollama_model = 'deepseek-coder-v2:16b-lite-base-q4_0'
 "let g:ollama_model = 'codegemma:2b' " fastest
 "let g:ollama_model = 'qwen2.5-coder:1.5b'
