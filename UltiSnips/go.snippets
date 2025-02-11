@@ -234,7 +234,7 @@ ${0}
 endsnippet
 
 # error multiple return
-snippet err2, "Error return with two return values" !b
+snippet err2 "Error return with two return values" !b
 if err != nil {
 	return ${1:nil}, err
 }
@@ -264,16 +264,6 @@ if err != nil {
 	return
 }
 ${0}
-endsnippet
-
-# json field tag
-snippet json "\`json:key\`"
-\`json:"${1:`!v  go#util#snippetcase(matchstr(getline("."), '\w\+'))`}"\`
-endsnippet
-
-# yaml field tag
-snippet yaml "\`yaml:key\`"
-\`yaml:"${1:`!v  go#util#snippetcase(matchstr(getline("."), '\w\+'))`}"\`
 endsnippet
 
 # fallthrough
@@ -534,7 +524,7 @@ import re
 
 def return_values(s):
 	# remove everything wrapped in parentheses
-	s = re.sub("\(.*?\)|\([^)]*$", "", s)
+	s = re.sub(r"\(.*?\)|\([^\)]*$", "", s)
 	return len(s.split(","))
 
 def opening_par(snip, pos):
