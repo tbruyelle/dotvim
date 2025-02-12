@@ -299,8 +299,11 @@ endfunction
 
 " python format
 function FormatPY()
+	let save_cursor = getpos('.')
 	" pip install git+https://github.com/psf/black
-	execute '%!python -m black -q -'
+	execute '%!python -m black -q - 2>/dev/null'
+	" Restore the cursor position
+	call setpos('.', save_cursor)
 endfunction
 augroup write_py
 	autocmd!
