@@ -33,6 +33,10 @@ call plug#end()
 nmap <C-e> <Plug>(ollama-edit)
 vmap <C-e> <Plug>(ollama-edit)
 vmap <Leader>r <Plug>(ollama-review)
+augroup ollama-colors
+	autocmd Colorscheme,VimEnter * :highlight OllamaSuggestion ctermfg=42
+	autocmd Colorscheme,VimEnter * :highlight OllamaAnnotation ctermfg=64
+augroup END
 
 " Colorscheme
 syntax enable
