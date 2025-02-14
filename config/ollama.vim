@@ -19,7 +19,7 @@ let g:ollama_chat_model = 'llama3.1:8b'
 
 " edit model
 "let g:ollama_edit_model = 'codestral:22b'
-let g:ollama_edit_model = 'starcoder2:3b'
+let g:ollama_edit_model = 'qwen2.5-coder:7b'
 " when disabled, LLM changs are applied directly. Useful when tracking changes via Git.
 "let g:ollama_use_inline_diff = 0
 

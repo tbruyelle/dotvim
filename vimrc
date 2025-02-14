@@ -28,8 +28,11 @@ Plug 'will133/vim-dirdiff'
 Plug 'gergap/vim-ollama'
 call plug#end()
 
-" ollama
-let g:ollama_enabled = 0
+" vim-ollama
+"let g:ollama_enabled = 1
+nmap <C-e> <Plug>(ollama-edit)
+vmap <C-e> <Plug>(ollama-edit)
+vmap <Leader>r <Plug>(ollama-review)
 
 " Colorscheme
 syntax enable
@@ -348,8 +351,9 @@ nnoremap <leader>a :cclose<CR>
 " show filepath
 nnoremap <leader>f :echo @%<CR>
 " enquote mapping
-nnoremap "" ciw"<esc>pa",<esc>
-vnoremap "" c"<esc>pa",<esc>
+" NOTE not working properly
+"nnoremap "" ciw"<esc>pa",<esc>
+"vnoremap "" c"<esc>pa",<esc>
 
 set tabstop=2
 set softtabstop=2
@@ -406,7 +410,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:SuperTabDefaultCompletionType = "context"
 
 
-" Go stuff
+" Golang stuff
 
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
 "au FileType go nmap <Leader>gd <Plug>(go-doc)
