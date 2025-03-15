@@ -235,6 +235,20 @@ function QFRmFile()
 	endfor
 	call setqflist(qf)
 endfunction
+" QFSelectFile select current file in the QF list
+nnoremap <Leader>qs :call QFSelectFile()<cr>
+function QFSelectFile()
+	let currentBufnr = bufnr('%')
+	let i=0
+	for f in getqflist()
+		let i+=1
+		if currentBufnr == f.bufnr
+			" select buffer in qf
+			execute 'crewind '.i
+			break
+		endif
+	endfor
+endfunction
 " QFRmDir removes current dir selected from the QF list
 nnoremap <Leader>qd :call QFRmDir()<cr>
 function QFRmDir()
