@@ -2,15 +2,15 @@
 let g:ollama_host = 'http://localhost:11434'
 " tab completion model
 "let g:ollama_model = 'codestral:22b'
-let g:ollama_model = 'starcoder2:3b'
-"let g:ollama_model = 'deepseek-coder-v2:16b-lite-base-q4_0'
+"let g:ollama_model = 'starcoder2:3b'
+let g:ollama_model = 'deepseek-coder-v2:16b-lite-base-q4_0'
 "let g:ollama_model = 'codegemma:2b' " fastest
 "let g:ollama_model = 'qwen2.5-coder:1.5b'
 
 " number of context lines to use for code completion
-"let g:ollama_context_lines = '10'
+let g:ollama_context_lines = '100'
 " debounce time to wait before triggering a completion
-"let g:ollama_debounce_time = '300'
+let g:ollama_debounce_time = '1000'
 
 " chat model
 let g:ollama_chat_model = 'llama3.1:8b'
