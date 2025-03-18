@@ -26,6 +26,7 @@ Plug 'inkarkat/vim-SyntaxRange'
 Plug 'thinca/vim-themis'
 Plug 'will133/vim-dirdiff'
 Plug 'gergap/vim-ollama'
+Plug 'powerman/vim-plugin-AnsiEsc'
 call plug#end()
 
 " vim-ollama
