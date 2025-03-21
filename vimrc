@@ -27,6 +27,7 @@ Plug 'thinca/vim-themis'
 Plug 'will133/vim-dirdiff'
 Plug 'gergap/vim-ollama'
 Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'MattesGroeger/vim-bookmarks'
 call plug#end()
 
 " vim-ollama
