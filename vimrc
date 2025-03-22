@@ -30,6 +30,11 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'MattesGroeger/vim-bookmarks'
 call plug#end()
 
+" vim-bookmarks
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_sign = '#'
+let g:bookmark_annotation_sign = '*'
+
 " vim-ollama
 "let g:ollama_enabled = 1
 nmap <C-e> <Plug>(ollama-edit)
