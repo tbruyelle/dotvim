@@ -308,11 +308,14 @@ inoremap <Down> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
 
-" format html on save
-"augroup write_html
-"	autocmd!
-"	autocmd BufWritePre *.html :normal gg=G ``
-"augroup END
+" format html 
+function FormatHTML()
+	execute 'silent! %!tidy -qi -ashtml -wrap 0 2>/dev/null'
+endfunction
+augroup write_html
+	autocmd!
+	autocmd BufWritePre *.html call FormatHTML()
+augroup END
 
 " xml format
 function FormatXML()
