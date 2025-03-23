@@ -325,6 +325,17 @@ function FormatJSON()
 	execute '%!jq .'
 endfunction
 
+" js format
+function FormatJS()
+	" pip install jsbeautifier
+	" or pacman -S python-jsbeautifier
+	exec '%!js-beautify'
+endfunction
+augroup write_js
+	autocmd!
+	autocmd BufWritePre *.js call FormatJS()
+augroup END
+
 " python format
 function FormatPY()
 	let save_cursor = getpos('.')
