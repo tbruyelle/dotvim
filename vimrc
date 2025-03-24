@@ -150,7 +150,11 @@ function! GitCommitTag()
   echo system('git name-rev --tags ' . l:sha1)
 endfunction
 function! GitDefaultBranch()
-	" if error, run 'git remote set-head origin main/master'
+	if exists('g:baseBranch')
+		return g:baseBranch
+	endif
+	" if this command returns an error, run
+	" 'git remote set-head origin main/master'
 	return trim(system("git rev-parse --abbrev-ref origin/HEAD|cut -c8-"))
 endfunction
 function! GitDiff()
