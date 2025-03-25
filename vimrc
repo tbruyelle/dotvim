@@ -496,19 +496,13 @@ augroup gno_autocmd
 		\ set syntax=go
 augroup END
 " Gno LSP config
-if (executable('gnols'))
+" go install github.com/gnoverse/gnopls@latest
+if (executable('gnopls'))
 	autocmd User lsp_setup  call lsp#register_server({
-		\ 'name': 'gnols',
-		\ 'cmd': ['gnols'],
+		\ 'name': 'gnopls',
+		\ 'cmd': ['gnopls'],
 		\ 'allowlist': ['gno'],
 		\ 'config': {},
-		\ 'workspace_config': {
-		\		'gno' : '/home/tom/go/bin/gno',
-		\		'gopls' : '/home/tom/go/bin/gopls',
-    \   'precompileOnSave' : v:true,
-    \   'buildOnSave' : v:true,
-    \   'root' : '/home/tom/src/gno',
-		\ },
 		\ 'languageId': {server_info->'gno'},
 		\ })
 	let g:lsp_show_workspace_edits = 1
