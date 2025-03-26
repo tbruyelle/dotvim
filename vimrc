@@ -35,6 +35,8 @@ call plug#end()
 "let g:bookmark_save_per_working_dir = 1
 let g:bookmark_sign = '#'
 let g:bookmark_annotation_sign = '*'
+" show only local bookmarks
+nmap ml ma<Leader>ql
 
 " vim-ollama
 "let g:ollama_enabled = 1
@@ -226,6 +228,19 @@ function QFDiet()
 			continue
 		endif
 		if f.text =~ 'is deprecated'
+			continue
+		endif
+		call add(qf, f)
+	endfor
+	call setqflist(qf)
+endfunction
+" QFLocal removes all files that does not belong to the working dir.
+nnoremap <Leader>ql :call QFLocal()<cr>
+function QFLocal()
+	let qf = []
+	for f in getqflist()
+		let n = bufname(f.bufnr)
+		if n =~ '^/'
 			continue
 		endif
 		call add(qf, f)
