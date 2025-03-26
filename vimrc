@@ -329,28 +329,28 @@ inoremap <Left> <nop>
 inoremap <Right> <nop>
 
 " format html 
-function FormatHTML()
+function FmtHTML()
 	execute 'silent! %!tidy -qi -ashtml -wrap 0 2>/dev/null'
 endfunction
 augroup write_html
 	autocmd!
-	autocmd BufWritePre *.html call FormatHTML()
+	autocmd BufWritePre *.html call FmtHTML()
 augroup END
 
 " xml format
-function FormatXML()
+function FmtXML()
 	set equalprg=xmllint\ --format\ -
 	normal gg=G
 endfunction
 
 " json format
-function FormatJSON()
+function FmtJSON()
 	execute '%!jq .'
 endfunction
 
 " js format
 autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
-function FormatJS()
+function FmtJS()
 	" pip install jsbeautifier
 	" or pacman -S python-jsbeautifier
 	let save_cursor = getpos('.')
@@ -360,11 +360,11 @@ function FormatJS()
 endfunction
 augroup write_js
 	autocmd!
-	autocmd BufWritePre *.js call FormatJS()
+	autocmd BufWritePre *.js call FmtJS()
 augroup END
 
 " python format
-function FormatPY()
+function FmtPY()
 	let save_cursor = getpos('.')
 	" pip install git+https://github.com/psf/black
 	execute '%!python -m black -q - 2>/dev/null'
@@ -373,11 +373,11 @@ function FormatPY()
 endfunction
 augroup write_py
 	autocmd!
-	autocmd BufWritePre *.py call FormatPY()
+	autocmd BufWritePre *.py call FmtPY()
 augroup END
 
 " proto format
-function FormatProto()
+function FmtProto()
 	let save_cursor = getpos('.')
 	let filename = expand('%:t')
 	execute '%!clang-format --assume-filename '.filename
@@ -386,7 +386,7 @@ function FormatProto()
 endfunction
 augroup write_proto
 	autocmd!
-	autocmd BufWritePre *.proto call FormatProto()
+	autocmd BufWritePre *.proto call FmtProto()
 augroup END
 
 " yaml format
