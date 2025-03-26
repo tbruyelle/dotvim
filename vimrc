@@ -538,7 +538,7 @@ endif
 function! s:on_lsp_buffer_enabled() abort
 	setlocal omnifunc=lsp#complete
 	setlocal signcolumn=yes
-	autocmd! BufWritePre *.gno LspDocumentFormatSync
+	autocmd! BufWritePre *.gno LspDocumentFormat
 	nmap <buffer> gd <plug>(lsp-definition)
 	nmap <buffer> <leader>rr <Plug>(lsp-rename)
 	nmap <buffer> <leader>ri <Plug>(lsp-implementation)
