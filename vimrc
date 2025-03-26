@@ -334,10 +334,14 @@ function FormatJSON()
 endfunction
 
 " js format
+autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
 function FormatJS()
 	" pip install jsbeautifier
 	" or pacman -S python-jsbeautifier
+	let save_cursor = getpos('.')
 	exec '%!js-beautify'
+	" Restore the cursor position
+	call setpos('.', save_cursor)
 endfunction
 augroup write_js
 	autocmd!
