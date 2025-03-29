@@ -30,7 +30,119 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'MattesGroeger/vim-bookmarks'
 call plug#end()
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Various mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" goto file edits file
+nnoremap gf :e <cfile><CR>
+" open dir of current buffer
+nnoremap <Leader>d :e %:p:h<CR>
+" quick buffer switch
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
+
+" upper case word
+inoremap <c-u> <esc>viwU<esc>i
+"nnoremap <c-u> viwU
+
+" delete line in insert mode
+inoremap <c-d> <esc>ddi
+
+" operator first parenthesis
+onoremap if( :<c-u>normal! 0f(vi(<cr>
+" operator last parenthesis
+onoremap il( :<c-u>normal! $F)vi(<cr>
+
+" quote word
+nnoremap <leader>" viw<esc><esc>a"<esc>bi"<esc>lel
+nnoremap <leader>' viw<esc><esc>a'<esc>bi'<esc>lel
+
+" force use hjkl
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+"cnext/cprevious mapping on location
+map <C-Left> :bprevious<CR>
+map <C-Right> :bnext<CR>
+"cnext/cprevious mapping on location
+map <C-Down> :lnext<CR>
+map <C-Up> :lprevious<CR>
+"close location mapping
+nnoremap <leader>q :lclose<CR>
+"cnext/cprevious mapping on quickfix
+noremap <C-l> :clast<CR>
+noremap <C-n> :cnext<CR>
+noremap <C-m> :cprevious<CR>
+"close quickfix mapping
+nnoremap <leader>a :cclose<CR>
+" show filepath
+nnoremap <leader>f :echo @%<CR>
+" enquote mapping
+" NOTE not working properly
+"nnoremap "" ciw"<esc>pa",<esc>
+"vnoremap "" c"<esc>pa",<esc>
+
+" Bubble single lines
+"nmap <C-K> ddkP
+"nmap <C-J> ddp
+" Smart way to move between windows
+nmap <C-j> <C-W>j
+nmap <C-k> <C-W>k
+nmap <C-h> <C-W>h
+nmap <C-l> <C-W>l
+
+" jk to <esc>
+inoremap jk <esc>
+"iunmap jk
+"inoremap <esc> <nop>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Various settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set noexpandtab
+set noswapfile
+
+" highlight line and column
+highlight CursorLine   cterm=NONE ctermbg=black  guibg=black
+highlight CursorColumn cterm=NONE ctermbg=black  guibg=black
+nnoremap <Leader>x :set cursorline! cursorcolumn!<CR>
+
+"always show statusline
+set laststatus=2
+" Format the status line
+set statusline=[%n]\ %t%m%r%h\ %w%y%<\ \ Cwd:%r%{getcwd()}%h\ \ %=\ Enc:%{strlen(&fenc)?&fenc:'none'},%{&ff}\ \ Line:%l\,%c\/%L\ \[%P\]\ %o
+
+" enable mouse
+set mouse=a
+
+" 7 characters limit when j/k
+set scrolloff=7
+
+set relativenumber
+set number
+
+filetype plugin indent on
+
+"nnoremap <C-\> 0i//<space><esc>j
+vnoremap <C-\> 0I//<space><esc>
+nnoremap <expr> <C-\> stridx(getline('.'), '//')==-1 ? '0I//<space><esc>j' : '0/\/\/<cr>xxj'
+
+" C-r ask input for  a replacement of selected text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" /-- write a comment separator
+nnoremap <Leader>-- O<esc>O//-----------------------------------------<cr>// 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-bookmarks
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " comment per_working_dir since it seems buggy
 "let g:bookmark_save_per_working_dir = 1
 let g:bookmark_sign = '#'
@@ -38,7 +150,9 @@ let g:bookmark_annotation_sign = '*'
 " show only local bookmarks
 nmap ml ma<Leader>ql
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-ollama
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ollama_enabled = 1
 nmap <C-e> <Plug>(ollama-edit)
 vmap <C-e> <Plug>(ollama-edit)
@@ -48,7 +162,9 @@ augroup ollama-colors
 	autocmd Colorscheme,VimEnter * :highlight OllamaAnnotation ctermfg=64
 augroup END
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colorscheme
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 set t_Co=256
 let g:rehash256 = 1
@@ -62,10 +178,9 @@ if &diff
 endif
 "set term=kitty
 
-" json tab format
-autocmd Filetype json setlocal tabstop=2 shiftwidth=2 expandtab
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " txtar syntax hl
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function s:TxTarHighlight(...)
   highlight Mine ctermfg=236 ctermbg=150 guifg=#303030 guibg=#afd787
   call SyntaxRange#IncludeEx('start="\%^" end="^\ze-- .* --$" containedin=ALL keepend', 'bash')
@@ -140,14 +255,23 @@ augroup txtar_autocmd
 augroup END
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " edit vimrc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <Leader>sv :source $MYVIMRC<cr>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " toggle zen mode
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>z :Goyo<cr>
 
-" git
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Git
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+abbreviate coalb Co-authored-by: Albert Le Batteux <contact@albttx.tech>
+abbreviate cogui Co-authored-by: Giuseppe Natale <giuseppe.natale@tendermint.com>
+
 function! GitCommitTag()
 	let l:sha1 = expand("<cword>")
   echo system('git name-rev --tags ' . l:sha1)
@@ -206,18 +330,44 @@ function ConflictToQF()
 endfunction
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fuzzy finder
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <C-p> :FZF<cr>
 nnoremap <C-b> :Buffers<cr>
 nnoremap <C-g> :GFiles?<cr>
 let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+" ctrlp works in working dir (still useful? ctrp plugin is commented...)
+let g:ctrlp_working_path_mode = 0
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ag search
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>s :Ack 
 "nnoremap <Leader>s :Ack --ignore={'*.pb.go','*.pb.gw.go','*.pulsar.go','*_test.go'} 
 "ack setup, replace with ag
 let g:ackprg = 'ag --vimgrep'
 let g:ackhighlight = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Quicklist handy functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" \cc select the current buffer filename in qf list
+nnoremap <Leader>cc :call BufferQF()<cr>
+function BufferQF()
+	let name = escape(bufname(), "/")
+	let wid = win_getid()
+	execute "copen 10"
+	let line = search(name)
+	if line > 0
+		call cursor(line, 1)
+		execute "cr " . line(".")
+	else
+		echo "No error in current buffer"
+		call win_gotoid(wid)
+	endif
+endfunction
+
 " QFDiet removes protobuf and test go files from QF list
 nnoremap <Leader>qf :call QFDiet()<cr>
 function QFDiet()
@@ -294,41 +444,9 @@ function QFRmDir()
 	call setqflist(qf)
 endfunction
 
-
-" goto file edits file
-nnoremap gf :e <cfile><CR>
-" open dir of current buffer
-nnoremap <Leader>d :e %:p:h<CR>
-" quick buffer switch
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
-
-" upper case word
-inoremap <c-u> <esc>viwU<esc>i
-"nnoremap <c-u> viwU
-
-" delete line in insert mode
-inoremap <c-d> <esc>ddi
-
-" operator first parenthesis
-onoremap if( :<c-u>normal! 0f(vi(<cr>
-" operator last parenthesis
-onoremap il( :<c-u>normal! $F)vi(<cr>
-
-" quote word
-nnoremap <leader>" viw<esc><esc>a"<esc>bi"<esc>lel
-nnoremap <leader>' viw<esc><esc>a'<esc>bi'<esc>lel
-
-" force use hjkl
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-nnoremap <Left> <nop>
-nnoremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-
-" format html 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" HTML
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function FmtHTML()
 	execute 'silent! %!tidy -qi -ashtml -wrap 0 2>/dev/null'
 endfunction
@@ -337,18 +455,26 @@ augroup write_html
 	autocmd BufWritePre *.html call FmtHTML()
 augroup END
 
-" xml format
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" XML format
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function FmtXML()
 	set equalprg=xmllint\ --format\ -
 	normal gg=G
 endfunction
 
-" json format
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JSON
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd Filetype json setlocal tabstop=2 shiftwidth=2 expandtab
+
 function FmtJSON()
 	execute '%!jq .'
 endfunction
 
-" js format
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Javascript
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd Filetype javascript setlocal tabstop=4 shiftwidth=4 expandtab
 function FmtJS()
 	" pip install jsbeautifier
@@ -363,7 +489,9 @@ augroup write_js
 	autocmd BufWritePre *.js call FmtJS()
 augroup END
 
-" python format
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Python
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function FmtPY()
 	let save_cursor = getpos('.')
 	" pip install git+https://github.com/psf/black
@@ -376,7 +504,9 @@ augroup write_py
 	autocmd BufWritePre *.py call FmtPY()
 augroup END
 
-" proto format
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Protobuf
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function FmtProto()
 	let save_cursor = getpos('.')
 	let filename = expand('%:t')
@@ -389,79 +519,27 @@ augroup write_proto
 	autocmd BufWritePre *.proto call FmtProto()
 augroup END
 
-" yaml format
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YAML
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
-" highlight line and column
-highlight CursorLine   cterm=NONE ctermbg=black  guibg=black
-highlight CursorColumn cterm=NONE ctermbg=black  guibg=black
-nnoremap <Leader>x :set cursorline! cursorcolumn!<CR>
-
-"cnext/cprevious mapping on location
-map <C-Left> :bprevious<CR>
-map <C-Right> :bnext<CR>
-"cnext/cprevious mapping on location
-map <C-Down> :lnext<CR>
-map <C-Up> :lprevious<CR>
-"close location mapping
-nnoremap <leader>q :lclose<CR>
-"cnext/cprevious mapping on quickfix
-noremap <C-l> :clast<CR>
-noremap <C-n> :cnext<CR>
-noremap <C-m> :cprevious<CR>
-"close quickfix mapping
-nnoremap <leader>a :cclose<CR>
-" show filepath
-nnoremap <leader>f :echo @%<CR>
-" enquote mapping
-" NOTE not working properly
-"nnoremap "" ciw"<esc>pa",<esc>
-"vnoremap "" c"<esc>pa",<esc>
-
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set noexpandtab
-set noswapfile
-"always show statusline
-set laststatus=2
-" Format the status line
-set statusline=[%n]\ %t%m%r%h\ %w%y%<\ \ Cwd:%r%{getcwd()}%h\ \ %=\ Enc:%{strlen(&fenc)?&fenc:'none'},%{&ff}\ \ Line:%l\,%c\/%L\ \[%P\]\ %o
-
-" enable mouse
-set mouse=a
-
-" 7 characters limit when j/k
-set scrolloff=7
-
-set relativenumber
-set number
-
-
-filetype plugin indent on
-
-autocmd BufRead,BufNewFile *.vugu set filetype=html
-
-" Markdown config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd FileType markdown setlocal tw=79
 autocmd FileType markdown nnoremap BB ciw**<esc>pa**<esc>
 autocmd FileType markdown vnoremap BB c**<esc>pa**<esc>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mail
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufRead,BufNewFile mail setlocal tw=72
 
-" Bubble single lines
-"nmap <C-K> ddkP
-"nmap <C-J> ddp
-" Smart way to move between windows
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
-
-" ctrlp works in working dir
-let g:ctrlp_working_path_mode = 0
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ultisnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " better key bindings for UltiSnipsExpandTrigger
 "let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -469,12 +547,16 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Supertab
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " supertab use gocode
 let g:SuperTabDefaultCompletionType = "context"
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Golang stuff
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Open the relevant Godoc for the word under the cursor with <leader>gd or open it vertically with <leader>gv
 "au FileType go nmap <Leader>gd <Plug>(go-doc)
 "au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
@@ -507,7 +589,73 @@ catch
 	" no gotags
 endtry
 
-" Gno config
+" Format go.plush files
+function! GoPlushFmt()
+	execute "silent! %s/<%= /appxxxx/g|norm!``"
+	execute "silent! %s/ %>/appyyyy/g|norm!``"
+	execute "silent! write!"
+	cexpr system('gofumpt -e -w ' . expand('%'))
+	cexpr system('goimports -w -local appxxxx ' . expand('%'))
+	edit!
+	execute "silent! %s/appxxxx/<%= /g|norm!``"
+	execute "silent! %s/appyyyy/ %>/g|norm!``"
+	execute "silent! write!"
+endfunction
+command! GoPlushFmt call GoPlushFmt()
+augroup goplush_autocmd
+	autocmd!
+	autocmd BufNewFile,BufRead *.go.plush set filetype=go
+	autocmd BufWritePost *.go.plush GoPlushFmt
+augroup END
+
+" To get hover working in the terminal we need to set ttymouse. See
+"
+" :help ttymouse
+"
+" for the appropriate setting for your terminal. Note that despite the
+" automated tests using xterm as the terminal, a setting of ttymouse=xterm
+" does not work correctly beyond a certain column number (citation needed)
+" hence we use ttymouse=sgr
+"set ttymouse=sgr
+
+" Suggestion: By default, govim populates the quickfix window with diagnostics
+" reported by gopls after a period of inactivity, the time period being
+" defined by updatetime (help updatetime). Here we suggest a short updatetime
+" time in order that govim/Vim are more responsive/IDE-like
+set updatetime=500
+
+" Suggestion: To make govim/Vim more responsive/IDE-like, we suggest a short
+" balloondelay
+set balloondelay=250
+
+" Suggestion: Turn on the sign column so you can see error marks on lines
+" where there are quickfix errors. Some users who already show line number
+" might prefer to instead have the signs shown in the number column; in which
+" case set signcolumn=number
+set signcolumn=yes
+
+" Suggestion: turn on auto-indenting. If you want closing parentheses, braces
+" etc to be added, https://github.com/jiangmiao/auto-pairs. In future we might
+" include this by default in govim.
+set autoindent
+set smartindent
+filetype indent on
+
+" Suggestion: define sensible backspace behaviour. See :help backspace for
+" more details
+set backspace=2
+
+" Suggestion: show info for completion candidates in a popup menu
+if has("patch-8.1.1904")
+	set completeopt+=popup
+	set completepopup=align:menu,border:off,highlight:Pmenu
+endif
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Gno
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup gno_autocmd
 	autocmd!
 	autocmd BufNewFile,BufRead *.gno
@@ -557,101 +705,6 @@ augroup lsp_install
 	autocmd!
 	autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-
-" Format go.plush files
-function! GoPlushFmt()
-	execute "silent! %s/<%= /appxxxx/g|norm!``"
-	execute "silent! %s/ %>/appyyyy/g|norm!``"
-	execute "silent! write!"
-	cexpr system('gofumpt -e -w ' . expand('%'))
-	cexpr system('goimports -w -local appxxxx ' . expand('%'))
-	edit!
-	execute "silent! %s/appxxxx/<%= /g|norm!``"
-	execute "silent! %s/appyyyy/ %>/g|norm!``"
-	execute "silent! write!"
-endfunction
-command! GoPlushFmt call GoPlushFmt()
-augroup goplush_autocmd
-	autocmd!
-	autocmd BufNewFile,BufRead *.go.plush set filetype=go
-	autocmd BufWritePost *.go.plush GoPlushFmt
-augroup END
-
-" \cc select the current buffer filename in qf list
-nnoremap <Leader>cc :call BufferQF()<cr>
-function BufferQF()
-	let name = escape(bufname(), "/")
-	let wid = win_getid()
-	execute "copen 10"
-	let line = search(name)
-	if line > 0
-		call cursor(line, 1)
-		execute "cr " . line(".")
-	else
-		echo "No error in current buffer"
-		call win_gotoid(wid)
-	endif
-endfunction
-
-"nnoremap <C-\> 0i//<space><esc>j
-vnoremap <C-\> 0I//<space><esc>
-nnoremap <expr> <C-\> stridx(getline('.'), '//')==-1 ? '0I//<space><esc>j' : '0/\/\/<cr>xxj'
-
-" C-r ask input for  a replacement of selected text
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
-" /-- write a comment separator
-nnoremap <Leader>-- O<esc>O//-----------------------------------------<cr>// 
-
-" To get hover working in the terminal we need to set ttymouse. See
-"
-" :help ttymouse
-"
-" for the appropriate setting for your terminal. Note that despite the
-" automated tests using xterm as the terminal, a setting of ttymouse=xterm
-" does not work correctly beyond a certain column number (citation needed)
-" hence we use ttymouse=sgr
-"set ttymouse=sgr
-
-" Suggestion: By default, govim populates the quickfix window with diagnostics
-" reported by gopls after a period of inactivity, the time period being
-" defined by updatetime (help updatetime). Here we suggest a short updatetime
-" time in order that govim/Vim are more responsive/IDE-like
-set updatetime=500
-
-" Suggestion: To make govim/Vim more responsive/IDE-like, we suggest a short
-" balloondelay
-set balloondelay=250
-
-" Suggestion: Turn on the sign column so you can see error marks on lines
-" where there are quickfix errors. Some users who already show line number
-" might prefer to instead have the signs shown in the number column; in which
-" case set signcolumn=number
-set signcolumn=yes
-
-" Suggestion: turn on auto-indenting. If you want closing parentheses, braces
-" etc to be added, https://github.com/jiangmiao/auto-pairs. In future we might
-" include this by default in govim.
-set autoindent
-set smartindent
-filetype indent on
-
-" Suggestion: define sensible backspace behaviour. See :help backspace for
-" more details
-set backspace=2
-
-" Suggestion: show info for completion candidates in a popup menu
-if has("patch-8.1.1904")
-	set completeopt+=popup
-	set completepopup=align:menu,border:off,highlight:Pmenu
-endif
-
-" jk to <esc>
-inoremap jk <esc>
-"iunmap jk
-"inoremap <esc> <nop>
-abbreviate coalb Co-authored-by: Albert Le Batteux <contact@albttx.tech>
-abbreviate cogui Co-authored-by: Giuseppe Natale <giuseppe.natale@tendermint.com>
 
 function! GetSelectedText()
 	" Why is this not a built-in Vim script function?!
