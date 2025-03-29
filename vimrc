@@ -2,15 +2,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'govim/govim'
 Plug 'junegunn/fzf.vim'
 Plug 'prabirshrestha/vim-lsp'
-"Plugin 'stamblerre/gocode', {'rtp': 'nvim/'} " I changed my gocode for supporting go modules.
 Plug 'ervandew/supertab'
-"Plug 'Townk/vim-autoclose'
 Plug 'mileszs/ack.vim'
 " some colors
 Plug 'fatih/molokai'
 Plug 'joeytwiddle/vim-diff-traffic-lights-colors'
-Plug 'karoliskoncevicius/oldbook-vim'
-"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -18,7 +14,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'oguzbilgic/vim-gdiff'
 " fzf for checkout git branches
 Plug 'stsewd/fzf-checkout.vim'
-"Plug 'jparise/vim-graphql'
 Plug 'tarekbecker/vim-yaml-formatter'
 " Zen mode, turn on with :Goyo
 Plug 'junegunn/goyo.vim'
@@ -174,7 +169,6 @@ set colorcolumn=80
 let g:markdown_fenced_languages = ['go', 'bash=sh', 'vim']
 if &diff
 	colorscheme traffic_lights_diff
-	"colorscheme oldbook
 endif
 "set term=kitty
 
