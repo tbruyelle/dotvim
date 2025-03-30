@@ -323,7 +323,6 @@ function ConflictToQF()
 	execute "cc"
 endfunction
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fuzzy finder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -547,7 +546,6 @@ let g:UltiSnipsEditSplit="vertical"
 " supertab use gocode
 let g:SuperTabDefaultCompletionType = "context"
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Golang stuff
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -644,8 +642,6 @@ if has("patch-8.1.1904")
 	set completeopt+=popup
 	set completepopup=align:menu,border:off,highlight:Pmenu
 endif
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Gno
