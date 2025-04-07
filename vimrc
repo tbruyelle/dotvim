@@ -50,6 +50,7 @@ onoremap il( :<c-u>normal! $F)vi(<cr>
 " quote word
 nnoremap <leader>" viw<esc><esc>a"<esc>bi"<esc>lel
 nnoremap <leader>' viw<esc><esc>a'<esc>bi'<esc>lel
+nnoremap <leader>` viw<esc><esc>a`<esc>bi`<esc>lel
 
 " force use hjkl
 nnoremap <Up> <nop>
