@@ -677,7 +677,8 @@ endif
 function! s:on_lsp_buffer_enabled() abort
 	setlocal omnifunc=lsp#complete
 	setlocal signcolumn=yes
-	autocmd! BufWritePre *.gno LspDocumentFormat
+	let g:lsp_format_sync_timeout = 1000
+	autocmd! BufWritePre *.gno LspDocumentFormatSync
 	nmap <buffer> gd <plug>(lsp-definition)
 	nmap <buffer> <leader>rr <Plug>(lsp-rename)
 	nmap <buffer> <leader>ri <Plug>(lsp-implementation)
