@@ -139,6 +139,15 @@ nnoremap <Leader>-- O<esc>O//-----------------------------------------<cr>//
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-bookmarks
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" shortcuts
+" Add/remove bookmark at current line	mm	:BookmarkToggle
+" Add/edit/remove annotation at current line	mi	:BookmarkAnnotate <TEXT>
+" Jump to next bookmark in buffer	mn	:BookmarkNext
+" Jump to previous bookmark in buffer	mp	:BookmarkPrev
+" Show all bookmarks (toggle)	ma	:BookmarkShowAll
+" Clear bookmarks in current buffer only	mc	:BookmarkClear
+" Clear bookmarks in all buffers	mx	:BookmarkClearAll
+
 " comment per_working_dir since it seems buggy
 "let g:bookmark_save_per_working_dir = 1
 let g:bookmark_sign = '#'
